@@ -1,1 +1,452 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Auto Parts Store",
+    "theme_version": "1.0.0",
+    "theme_author": "Auto Parts BG",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Language",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Language Settings"
+      },
+      {
+        "type": "select",
+        "id": "locale",
+        "label": "Default language",
+        "options": [
+          {
+            "value": "bg",
+            "label": "Български (Bulgarian)"
+          },
+          {
+            "value": "en",
+            "label": "English"
+          }
+        ],
+        "default": "bg",
+        "info": "Bulgarian is set as the default language"
+      },
+      {
+        "type": "checkbox",
+        "id": "force_bulgarian",
+        "label": "Force Bulgarian throughout site",
+        "default": true,
+        "info": "Use Bulgarian translations as primary language"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Цветова схема"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Основен цвят",
+        "default": "#D32F2F"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_dark",
+        "label": "Тъмен основен цвят",
+        "default": "#B71C1C"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Цвят на фона",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Цвят на повърхността",
+        "default": "#F5F5F5"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Цвят на текста",
+        "default": "#212121"
+      },
+      {
+        "type": "color",
+        "id": "color_text_light",
+        "label": "Светъл цвят на текста",
+        "default": "#757575"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Шрифтове"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Шрифт за заглавия",
+        "default": "montserrat_n6",
+        "info": "Поддържа кирилица"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Основен шрифт",
+        "default": "inter_n4",
+        "info": "Поддържа кирилица"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "label": "Мащаб на заглавията",
+        "min": 100,
+        "max": 150,
+        "step": 5,
+        "default": 120,
+        "unit": "%"
+      },
+      {
+        "type": "range",
+        "id": "body_scale",
+        "label": "Мащаб на текста",
+        "min": 100,
+        "max": 130,
+        "step": 5,
+        "default": 100,
+        "unit": "%"
+      }
+    ]
+  },
+  {
+    "name": "Auto Parts Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Показване на марки"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_brand_logos",
+        "label": "Показване на лога на марките в началната страница",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "brand_grid_columns",
+        "label": "Колони в решетката с марки",
+        "options": [
+          {
+            "value": "3",
+            "label": "3 колони"
+          },
+          {
+            "value": "4",
+            "label": "4 колони"
+          },
+          {
+            "value": "5",
+            "label": "5 колони"
+          },
+          {
+            "value": "6",
+            "label": "6 колони"
+          }
+        ],
+        "default": "5"
+      },
+      {
+        "type": "header",
+        "content": "Търсене по година/марка/модел"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_ymm_search",
+        "label": "Включване на търсене по година/марка/модел",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "ymm_start_year",
+        "label": "Най-стара година в селектора",
+        "default": 1990,
+        "min": 1980,
+        "max": 2000,
+        "step": 1
+      },
+      {
+        "type": "header",
+        "content": "Значки за доверие"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_trust_badges",
+        "label": "Показване на значки за доверие",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "delivery_time",
+        "label": "Текст за време на доставка",
+        "default": "Доставка до 24ч"
+      },
+      {
+        "type": "text",
+        "id": "warranty_text",
+        "label": "Текст за гаранция",
+        "default": "2 години гаранция"
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "sticky_header",
+        "label": "Включване на лепкав хедър",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "logo_height",
+        "label": "Височина на логото",
+        "options": [
+          {
+            "value": "40px",
+            "label": "Малко"
+          },
+          {
+            "value": "60px",
+            "label": "Средно"
+          },
+          {
+            "value": "80px",
+            "label": "Голямо"
+          }
+        ],
+        "default": "60px"
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Показване на икони за плащане",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Текст за авторски права",
+        "default": "© 2024 Auto Parts BG. Всички права запазени."
+      }
+    ]
+  },
+  {
+    "name": "Product Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_sku",
+        "label": "Показване на SKU/Номер на частта",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Показване на производител",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_compatibility",
+        "label": "Показване на информация за съвместимост",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Bulgarian Localization",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Валута"
+      },
+      {
+        "type": "select",
+        "id": "currency_format",
+        "label": "Формат на валутата",
+        "options": [
+          {
+            "value": "suffix",
+            "label": "100 лв."
+          },
+          {
+            "value": "prefix",
+            "label": "лв. 100"
+          }
+        ],
+        "default": "suffix"
+      },
+      {
+        "type": "header",
+        "content": "Информация за доставка"
+      },
+      {
+        "type": "richtext",
+        "id": "shipping_info",
+        "label": "Информация за доставка",
+        "default": "<p>Безплатна доставка за поръчки над 100 лв. Доставка с Еконт или Спиди.</p>"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Оформление на страницата"
+      },
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Ширина на страницата",
+        "min": 1000,
+        "max": 1600,
+        "step": 100,
+        "default": 1200,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "spacing_sections",
+        "label": "Разстояние между секциите",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "default": 60,
+        "unit": "px"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Настройки на количката"
+      },
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Тип количка",
+        "options": [
+          {
+            "value": "notification",
+            "label": "Известие"
+          },
+          {
+            "value": "drawer",
+            "label": "Чекмедже"
+          },
+          {
+            "value": "page",
+            "label": "Страница"
+          }
+        ],
+        "default": "notification"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_note",
+        "label": "Включване на бележки в количката",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Настройки за търсене"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "label": "Включване на предиктивно търсене",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_vendor",
+        "label": "Показване на доставчик в резултатите от търсенето",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_price",
+        "label": "Показване на цена в резултатите от търсенето",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Социални мрежи"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https://facebook.com/shopname"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "https://instagram.com/shopname"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https://youtube.com/shopname"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https://twitter.com/shopname"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Изображение за favicon",
+        "info": "Ще бъде мащабирано до 32 x 32px"
+      }
+    ]
+  }
+]
