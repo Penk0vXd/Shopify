@@ -119,11 +119,22 @@
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .search__button:hover {
     color: var(--color-primary);
+    background-color: rgba(211, 47, 47, 0.1);
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .search__button:active {
+    transform: translateY(-50%) scale(0.95);
   }
 
   .header__cart {
@@ -232,15 +243,59 @@
 
     <nav class="header__nav">
       <ul class="nav__list">
-        {%- for link in section.settings.menu.links -%}
+        {%- if linklists[section.settings.menu].links.size > 0 -%}
+          {%- for link in linklists[section.settings.menu].links -%}
+            <li>
+              <a href="{{ link.url }}" 
+                 class="nav__link {% if link.active %}active{% endif %}"
+                 {% if link.current %}aria-current="page"{% endif %}>
+                {{ link.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          {%- comment -%} Default Bulgarian navigation if no menu is configured {%- endcomment -%}
           <li>
-            <a href="{{ link.url }}" 
-               class="nav__link {% if link.active %}active{% endif %}"
-               {% if link.current %}aria-current="page"{% endif %}>
-              {{ link.title }}
+            <a href="{{ routes.root_url }}" class="nav__link {% if request.page_type == 'index' %}active{% endif %}">
+              Начало
             </a>
           </li>
-        {%- endfor -%}
+          <li>
+            <a href="{{ routes.all_products_collection_url }}" class="nav__link {% if request.page_type == 'collection' %}active{% endif %}">
+              Всички продукти
+            </a>
+          </li>
+          <li>
+            <a href="/collections/engine-parts" class="nav__link">
+              Двигател
+            </a>
+          </li>
+          <li>
+            <a href="/collections/brakes" class="nav__link">
+              Спирачки
+            </a>
+          </li>
+          <li>
+            <a href="/collections/suspension" class="nav__link">
+              Ходова част
+            </a>
+          </li>
+          <li>
+            <a href="/collections/electrical" class="nav__link">
+              Електрика
+            </a>
+          </li>
+          <li>
+            <a href="/pages/about" class="nav__link">
+              За нас
+            </a>
+          </li>
+          <li>
+            <a href="/pages/contact" class="nav__link">
+              Контакти
+            </a>
+          </li>
+        {%- endif -%}
       </ul>
     </nav>
 
