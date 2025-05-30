@@ -239,13 +239,13 @@
                        loading="lazy">
                 {%- else -%}
                   <div class="product-card__image" style="background-color: var(--color-surface); display: flex; align-items: center; justify-content: center; color: var(--color-text-light);">
-                    {{ 'products.product.no_image' | default: 'Няма изображение' }}
+                    {{ 'products.product.no_image' | t | default: 'Няма изображение' }}
                   </div>
                 {%- endif -%}
                 
                 {%- if product.compare_at_price > product.price -%}
                   <div class="product-card__badge">
-                    {{ 'products.product.sale' | default: 'Промоция' }}
+                    {{ 'products.product.sale' | t | default: 'Промоция' }}
                   </div>
                 {%- endif -%}
               </div>
@@ -277,9 +277,9 @@
                         class="product-card__button"
                         {% unless product.available %}disabled{% endunless %}>
                   {%- if product.available -%}
-                    {{ 'products.product.add_to_cart' | default: 'Добави в количката' }}
+                    {{ 'products.product.add_to_cart' | t }}
                   {%- else -%}
-                    {{ 'products.product.sold_out' | default: 'Изчерпан' }}
+                    {{ 'products.product.sold_out' | t }}
                   {%- endif -%}
                 </button>
               </form>
@@ -290,12 +290,12 @@
       
       {%- if section.settings.show_view_all and collection.products.size > products_to_show -%}
         <a href="{{ collection.url }}" class="view-all-button">
-          {{ 'collections.general.view_all' | default: 'Виж всички продукти' }}
+          {{ 'collections.general.view_all' | t | default: 'Виж всички продукти' }}
         </a>
       {%- endif -%}
     {%- else -%}
       <div style="text-align: center; padding: 40px; color: var(--color-text-light);">
-        {{ 'collections.general.no_matches' | default: 'Няма налични продукти в момента.' }}
+        {{ 'collections.general.no_matches' | t | default: 'Няма налични продукти в момента.' }}
       </div>
     {%- endif -%}
   </div>

@@ -221,7 +221,7 @@
       </svg>
     </div>
     
-    <h2 class="newsletter-title">{{ section.settings.heading | default: 'general.newsletter.title'}}</h2>
+    <h2 class="newsletter-title">{{ section.settings.heading | default: 'general.newsletter.title' }}</h2>
     <p class="newsletter-subtitle">{{ section.settings.subheading | default: 'Получавайте информация за нови продукти, промоции и автомобилни съвети директно в имейла си.' }}</p>
     
     <form class="newsletter-form" action="{{ routes.root_url }}contact#contact_form" method="post" accept-charset="UTF-8">
@@ -232,12 +232,12 @@
       <input type="email" 
              name="contact[email]" 
              class="newsletter-input"
-             placeholder="{{ 'general.newsletter.email_placeholder' | default: 'Имейл' }}"
+             placeholder="{{ 'general.newsletter.email_placeholder' | t }}"
              required
-             aria-label="{{ 'general.newsletter.email_placeholder' | default: 'Имейл' }}">
+             aria-label="{{ 'general.newsletter.email_placeholder' | t }}">
              
       <button type="submit" class="newsletter-button">
-        {{ section.settings.button_text | default: 'general.newsletter.submit' }}
+        {{ section.settings.button_text | default: 'general.newsletter.submit' | t }}
       </button>
     </form>
     
@@ -245,7 +245,7 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;">
         <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
       </svg>
-      {{ 'general.newsletter.success' | default: 'Успешно се абонирали' }}
+      {{ 'general.newsletter.success' | t }}
     </div>
     
     {%- if section.settings.show_benefits -%}
