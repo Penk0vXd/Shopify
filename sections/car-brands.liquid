@@ -124,7 +124,7 @@
 
 <section class="brands-section">
   <div class="brands-container">
-    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.browse_by_brand' | t }}</h2>
+    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.browse_by_brand'}}</h2>
     
     <div class="brand-grid">
       {% assign available_brands = 'audi,bmw,mercedes,volkswagen,ford,toyota,honda' | split: ',' %}
@@ -155,7 +155,7 @@
             <h3 class="brand-card__title">{{ block.settings.brand_name }}</h3>
             
             {%- if block.settings.parts_count != blank -%}
-              <p class="brand-card__parts-count">{{ block.settings.parts_count }} {{ 'general.parts_available' | t | default: 'части налични' }}</p>
+              <p class="brand-card__parts-count">{{ block.settings.parts_count }} {{ 'general.parts_available' | default: 'части налични' }}</p>
             {%- endif -%}
           </a>
         {%- endif -%}

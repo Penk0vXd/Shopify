@@ -127,7 +127,7 @@
 
 <section class="categories-section">
   <div class="categories-container">
-    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.popular_categories' | t }}</h2>
+    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.popular_categories' }}</h2>
     
     <div class="category-grid">
       {%- for block in section.blocks -%}
@@ -147,38 +147,38 @@
       {%- if section.blocks.size == 0 -%}
         <a href="/collections/engine-parts" class="category-card">
           <div class="category-icon">🔧</div>
-          <h3 class="category-card__title">{{ 'categories.engine' | t }}</h3>
-          <p class="category-card__description">{{ 'categories.engine_desc' | t }}</p>
+          <h3 class="category-card__title">{{ 'categories.engine' }}</h3>
+          <p class="category-card__description">{{ 'categories.engine_desc' }}</p>
         </a>
         
         <a href="/collections/brakes" class="category-card">
           <div class="category-icon">🛑</div>
-          <h3 class="category-card__title">{{ 'categories.brakes' | t }}</h3>
-          <p class="category-card__description">{{ 'categories.brakes_desc' | t }}</p>
+          <h3 class="category-card__title">{{ 'categories.brakes' }}</h3>
+          <p class="category-card__description">{{ 'categories.brakes_desc' }}</p>
         </a>
         
         <a href="/collections/suspension" class="category-card">
           <div class="category-icon">🚗</div>
-          <h3 class="category-card__title">{{ 'categories.suspension' | t }}</h3>
-          <p class="category-card__description">{{ 'categories.suspension_desc' | t }}</p>
+          <h3 class="category-card__title">{{ 'categories.suspension' }}</h3>
+          <p class="category-card__description">{{ 'categories.suspension_desc' }}</p>
         </a>
         
         <a href="/collections/electrical" class="category-card">
           <div class="category-icon">⚡</div>
-          <h3 class="category-card__title">{{ 'categories.electrical' | t }}</h3>
-          <p class="category-card__description">{{ 'categories.electrical_desc' | t }}</p>
+          <h3 class="category-card__title">{{ 'categories.electrical' }}</h3>
+          <p class="category-card__description">{{ 'categories.electrical_desc' }}</p>
         </a>
         
         <a href="/collections/filters" class="category-card">
           <div class="category-icon">🔄</div>
-          <h3 class="category-card__title">{{ 'categories.filters' | t }}</h3>
-          <p class="category-card__description">{{ 'categories.filters_desc' | t }}</p>
+          <h3 class="category-card__title">{{ 'categories.filters' }}</h3>
+          <p class="category-card__description">{{ 'categories.filters_desc' }}</p>
         </a>
         
         <a href="/collections/body-parts" class="category-card">
           <div class="category-icon">🚙</div>
-          <h3 class="category-card__title">{{ 'categories.body' | t }}</h3>
-          <p class="category-card__description">{{ 'categories.body_desc' | t }}</p>
+          <h3 class="category-card__title">{{ 'categories.body' }}</h3>
+          <p class="category-card__description">{{ 'categories.body_desc' }}</p>
         </a>
       {%- endif -%}
     </div>

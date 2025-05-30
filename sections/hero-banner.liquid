@@ -123,28 +123,28 @@
 
 <section class="hero-section">
   <div class="hero-content">
-    <h1 class="hero-title">{{ 'homepage.hero.title' | t | default: section.settings.title }}</h1>
-    <p class="hero-subtitle">{{ 'homepage.hero.subtitle' | t | default: section.settings.subtitle }}</p>
+    <h1 class="hero-title">{{ 'homepage.hero.title' | default: section.settings.title }}</h1>
+    <p class="hero-subtitle">{{ 'homepage.hero.subtitle' | default: section.settings.subtitle }}</p>
     
     {% if section.settings.show_ymm_search %}
     <div class="ymm-selector hero-ymm">
       <select id="year-select" class="ymm-select">
-        <option value="">{{ 'search.select_year' | t }}</option>
+        <option value="">{{ 'search.select_year' | default: 'Избери година' }}</option>
         {% for year in (1990..2024) reversed %}
           <option value="{{ year }}">{{ year }}</option>
         {% endfor %}
       </select>
       
       <select id="make-select" class="ymm-select" disabled>
-        <option value="">{{ 'search.select_make' | t }}</option>
+        <option value="">{{ 'search.select_make' | default: 'Избери марка' }}</option>
       </select>
       
       <select id="model-select" class="ymm-select" disabled>
-        <option value="">{{ 'search.select_model' | t }}</option>
+        <option value="">{{ 'search.select_model' | default: 'Избери модел' }}</option>
       </select>
       
       <button class="ymm-search-btn" disabled>
-        {{ 'search.find_parts' | t }}
+        {{ 'search.find_parts' | default: 'Намери части' }}
       </button>
     </div>
     {% endif %}
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
     yearSelect.addEventListener('change', function() {
       if (this.value) {
         makeSelect.disabled = false;
-        makeSelect.innerHTML = '<option value="">{{ "search.select_make" | t }}</option>';
+        makeSelect.innerHTML = '<option value="">{{ "search.select_make" | default: 'Избери марка' }}</option>';
         Object.keys(ymm_data).forEach(make => {
           makeSelect.innerHTML += `<option value="${make}">${make.charAt(0).toUpperCase() + make.slice(1)}</option>`;
         });
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
     makeSelect.addEventListener('change', function() {
       if (this.value) {
         modelSelect.disabled = false;
-        modelSelect.innerHTML = '<option value="">{{ "search.select_model" | t }}</option>';
+        modelSelect.innerHTML = '<option value="">{{ "search.select_model" | default: 'Избери модел' }}</option>';
         ymm_data[this.value].forEach(model => {
           modelSelect.innerHTML += `<option value="${model.toLowerCase().replace(/\s+/g, '-')}">${model}</option>`;
         });
