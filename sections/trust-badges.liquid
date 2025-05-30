@@ -1,0 +1,302 @@
+{%- style -%}
+  .trust-badges {
+    background-color: var(--color-surface);
+    padding: 60px 0;
+    margin: 0;
+  }
+
+  .trust-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .trust-badges__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    align-items: center;
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    background: var(--color-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .trust-badge:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  }
+
+  .trust-badge__icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .trust-badge__icon::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--color-background);
+    z-index: 1;
+  }
+
+  .trust-badge__icon svg {
+    width: 28px;
+    height: 28px;
+    fill: var(--color-primary);
+    position: relative;
+    z-index: 2;
+  }
+
+  .trust-badge__content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+  }
+
+  .trust-badge__content p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .trust-badges__grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+    
+    .trust-badge {
+      padding: 25px 20px;
+      gap: 15px;
+    }
+    
+    .trust-badge__icon {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .trust-badge__icon svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .trust-badges {
+      padding: 50px 0;
+    }
+  }
+{%- endstyle -%}
+
+<section class="trust-badges">
+  <div class="trust-container">
+    <div class="trust-badges__grid">
+      
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'trust_badge' -%}
+          <div class="trust-badge" {{ block.shopify_attributes }}>
+            <div class="trust-badge__icon">
+              {%- case block.settings.icon -%}
+                {%- when 'delivery' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19,13C19.34,13 19.67,13.04 20,13.09V10L12,4L4,10V20H11.09C11.04,19.67 11,19.34 11,19A8,8 0 0,1 19,11M19,15A4,4 0 0,0 15,19A4,4 0 0,0 19,23A4,4 0 0,0 23,19A4,4 0 0,0 19,15M17.5,19.5V21.5H20.5V19.5H17.5Z"/>
+                  </svg>
+                {%- when 'warranty' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z"/>
+                  </svg>
+                {%- when 'quality' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                  </svg>
+                {%- when 'stock' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M21,8V20.5C21,20.78 20.78,21 20.5,21H3.5C3.22,21 3,20.78 3,20.5V8H21M21,3H3C2.45,3 2,3.45 2,4V6C2,6.55 2.45,7 3,7H21C21.55,7 22,6.55 22,6V4C22,3.45 21.55,3 21,3M11,9H13V19H11V9M5,9H7V19H5V9M17,9H19V19H17V9Z"/>
+                  </svg>
+                {%- when 'support' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
+                  </svg>
+                {%- else -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                  </svg>
+              {%- endcase -%}
+            </div>
+            <div class="trust-badge__content">
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.description }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+      
+      {%- comment -%} Default badges if no blocks are configured {%- endcomment -%}
+      {%- if section.blocks.size == 0 -%}
+        <div class="trust-badge">
+          <div class="trust-badge__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M19,13C19.34,13 19.67,13.04 20,13.09V10L12,4L4,10V20H11.09C11.04,19.67 11,19.34 11,19A8,8 0 0,1 19,11M19,15A4,4 0 0,0 15,19A4,4 0 0,0 19,23A4,4 0 0,0 23,19A4,4 0 0,0 19,15M17.5,19.5V21.5H20.5V19.5H17.5Z"/>
+            </svg>
+          </div>
+          <div class="trust-badge__content">
+            <h3>{{ 'trust.fast_delivery' | t }}</h3>
+            <p>{{ 'trust.fast_delivery_desc' | t | default: 'Безплатна доставка над 100 лв.' }}</p>
+          </div>
+        </div>
+        
+        <div class="trust-badge">
+          <div class="trust-badge__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1Z"/>
+            </svg>
+          </div>
+          <div class="trust-badge__content">
+            <h3>{{ 'trust.warranty' | t }}</h3>
+            <p>{{ 'trust.warranty_desc' | t | default: 'Гаранция върху всички продукти' }}</p>
+          </div>
+        </div>
+        
+        <div class="trust-badge">
+          <div class="trust-badge__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+            </svg>
+          </div>
+          <div class="trust-badge__content">
+            <h3>{{ 'trust.original_parts' | t }}</h3>
+            <p>{{ 'trust.original_parts_desc' | t | default: 'Само оригинални и качествени части' }}</p>
+          </div>
+        </div>
+        
+        <div class="trust-badge">
+          <div class="trust-badge__icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21,8V20.5C21,20.78 20.78,21 20.5,21H3.5C3.22,21 3,20.78 3,20.5V8H21M21,3H3C2.45,3 2,3.45 2,4V6C2,6.55 2.45,7 3,7H21C21.55,7 22,6.55 22,6V4C22,3.45 21.55,3 21,3M11,9H13V19H11V9M5,9H7V19H5V9M17,9H19V19H17V9Z"/>
+            </svg>
+          </div>
+          <div class="trust-badge__content">
+            <h3>{{ 'trust.in_stock' | t }}</h3>
+            <p>{{ 'trust.in_stock_desc' | t | default: 'Над 50,000 части на склад' }}</p>
+          </div>
+        </div>
+      {%- endif -%}
+      
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "trust_badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "delivery",
+              "label": "Delivery Truck"
+            },
+            {
+              "value": "warranty",
+              "label": "Shield/Warranty"
+            },
+            {
+              "value": "quality",
+              "label": "Quality Check"
+            },
+            {
+              "value": "stock",
+              "label": "In Stock"
+            },
+            {
+              "value": "support",
+              "label": "Customer Support"
+            }
+          ],
+          "default": "delivery"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Доставка до 24ч"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Безплатна доставка за поръчки над 100 лв."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges",
+      "blocks": [
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "delivery",
+            "title": "Доставка до 24ч",
+            "description": "Безплатна доставка за поръчки над 100 лв."
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "warranty",
+            "title": "2 години гаранция",
+            "description": "Гаранция върху всички продукти"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "quality",
+            "title": "100% оригинални части",
+            "description": "Само оригинални и качествени части"
+          }
+        },
+        {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "stock",
+            "title": "Наличност на склад",
+            "description": "Над 50,000 части на склад"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 

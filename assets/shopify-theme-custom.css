@@ -1,0 +1,309 @@
+/* Auto Parts Store - Custom Theme Styles */
+
+/* Color Variables */
+:root {
+  --color-primary: #D32F2F;
+  --color-primary-dark: #B71C1C;
+  --color-primary-light: #EF5350;
+  --color-secondary: #757575;
+  --color-background: #FFFFFF;
+  --color-surface: #F5F5F5;
+  --color-text: #212121;
+  --color-text-light: #757575;
+  --color-success: #4CAF50;
+  --color-warning: #FF9800;
+  --color-error: #F44336;
+  
+  /* Typography */
+  --font-heading: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Spacing */
+  --spacing-unit: 8px;
+}
+
+/* Typography with Cyrillic Support */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap&subset=cyrillic');
+
+/* Base Styles */
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* Header Customization */
+.site-header {
+  background-color: var(--color-background);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-bottom: 3px solid var(--color-primary);
+}
+
+.site-header__logo img {
+  max-height: 60px;
+}
+
+.site-nav__link {
+  color: var(--color-text);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.site-nav__link:hover {
+  color: var(--color-primary);
+}
+
+/* Buttons */
+.btn,
+.shopify-payment-button__button,
+button[type="submit"] {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: var(--font-heading);
+}
+
+.btn:hover,
+.shopify-payment-button__button:hover,
+button[type="submit"]:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+}
+
+/* Brand Grid Section */
+.brand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: calc(var(--spacing-unit) * 3);
+  padding: calc(var(--spacing-unit) * 6) 0;
+}
+
+.brand-card {
+  background: var(--color-background);
+  border: 2px solid var(--color-surface);
+  border-radius: 8px;
+  padding: calc(var(--spacing-unit) * 3);
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.brand-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.brand-card img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  margin: 0 auto calc(var(--spacing-unit) * 2);
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.brand-card:hover img {
+  filter: grayscale(0%);
+}
+
+.brand-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Trust Badges */
+.trust-badges {
+  background-color: var(--color-surface);
+  padding: calc(var(--spacing-unit) * 3) 0;
+  margin: calc(var(--spacing-unit) * 4) 0;
+}
+
+.trust-badges__container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing-unit) * 3);
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 1.5);
+  font-weight: 500;
+}
+
+.trust-badge svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--color-primary);
+}
+
+/* Product Cards */
+.product-card {
+  border: 1px solid var(--color-surface);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.product-card__image-wrapper {
+  position: relative;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+
+.product-card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card__image {
+  transform: scale(1.05);
+}
+
+.product-card__info {
+  padding: calc(var(--spacing-unit) * 2);
+}
+
+.product-card__title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: calc(var(--spacing-unit) * 1);
+  color: var(--color-text);
+}
+
+.product-card__price {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Search & Filter Bar */
+.search-filter-bar {
+  background-color: var(--color-surface);
+  padding: calc(var(--spacing-unit) * 3);
+  border-radius: 8px;
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Year/Make/Model Selector */
+.ymm-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: calc(var(--spacing-unit) * 2);
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.ymm-selector select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--color-surface);
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: var(--color-background);
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.ymm-selector select:hover,
+.ymm-selector select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .brand-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--spacing-unit) * 2);
+  }
+  
+  .trust-badges__container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .ymm-selector {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cart Drawer Customization */
+.cart-drawer {
+  border-left: 4px solid var(--color-primary);
+}
+
+.cart-drawer__header {
+  background-color: var(--color-surface);
+  padding: calc(var(--spacing-unit) * 3);
+}
+
+.cart-drawer__footer {
+  background-color: var(--color-surface);
+  padding: calc(var(--spacing-unit) * 3);
+  border-top: 2px solid var(--color-primary);
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--color-text);
+  color: var(--color-background);
+  padding: calc(var(--spacing-unit) * 6) 0;
+  margin-top: calc(var(--spacing-unit) * 8);
+}
+
+.site-footer__link {
+  color: var(--color-background);
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.site-footer__link:hover {
+  opacity: 1;
+  color: var(--color-primary-light);
+} 

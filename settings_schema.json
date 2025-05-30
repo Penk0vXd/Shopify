@@ -1,0 +1,314 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Auto Parts Store",
+    "theme_version": "1.0.0",
+    "theme_author": "Auto Parts BG",
+    "theme_documentation_url": "https://help.shopify.com/",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Language",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Language Settings"
+      },
+      {
+        "type": "select",
+        "id": "locale",
+        "label": "Default language",
+        "options": [
+          {
+            "value": "bg",
+            "label": "Български (Bulgarian)"
+          },
+          {
+            "value": "en",
+            "label": "English"
+          }
+        ],
+        "default": "bg",
+        "info": "Set Bulgarian as default language"
+      },
+      {
+        "type": "checkbox",
+        "id": "force_bulgarian",
+        "label": "Force Bulgarian only",
+        "default": true,
+        "info": "Use only Bulgarian translations throughout the site"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Primary Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#D32F2F",
+        "info": "Main red color for buttons and accents"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_dark",
+        "label": "Primary dark",
+        "default": "#B71C1C",
+        "info": "Darker red for hover states"
+      },
+      {
+        "type": "header",
+        "content": "Background Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Surface",
+        "default": "#F5F5F5",
+        "info": "For cards and sections"
+      },
+      {
+        "type": "header",
+        "content": "Text Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#212121"
+      },
+      {
+        "type": "color",
+        "id": "color_text_light",
+        "label": "Text light",
+        "default": "#757575"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Heading font",
+        "default": "montserrat_n6",
+        "info": "Supports Cyrillic characters"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body font",
+        "default": "inter_n4",
+        "info": "Supports Cyrillic characters"
+      },
+      {
+        "type": "range",
+        "id": "type_base_size",
+        "label": "Base font size",
+        "default": 16,
+        "min": 14,
+        "max": 20,
+        "step": 1,
+        "unit": "px"
+      }
+    ]
+  },
+  {
+    "name": "Auto Parts Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand Display"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_brand_logos",
+        "label": "Show brand logos on homepage",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "brand_grid_columns",
+        "label": "Brand grid columns",
+        "options": [
+          {
+            "value": "3",
+            "label": "3 columns"
+          },
+          {
+            "value": "4",
+            "label": "4 columns"
+          },
+          {
+            "value": "5",
+            "label": "5 columns"
+          },
+          {
+            "value": "6",
+            "label": "6 columns"
+          }
+        ],
+        "default": "5"
+      },
+      {
+        "type": "header",
+        "content": "Year/Make/Model Search"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_ymm_search",
+        "label": "Enable Year/Make/Model search",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "ymm_start_year",
+        "label": "Oldest year in selector",
+        "default": 1990,
+        "min": 1980,
+        "max": 2000,
+        "step": 1
+      },
+      {
+        "type": "header",
+        "content": "Trust Badges"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_trust_badges",
+        "label": "Show trust badges",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "delivery_time",
+        "label": "Delivery time text",
+        "default": "Доставка до 24ч"
+      },
+      {
+        "type": "text",
+        "id": "warranty_text",
+        "label": "Warranty text",
+        "default": "2 години гаранция"
+      }
+    ]
+  },
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "sticky_header",
+        "label": "Enable sticky header",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "logo_height",
+        "label": "Logo height",
+        "options": [
+          {
+            "value": "40px",
+            "label": "Small"
+          },
+          {
+            "value": "60px",
+            "label": "Medium"
+          },
+          {
+            "value": "80px",
+            "label": "Large"
+          }
+        ],
+        "default": "60px"
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Copyright text",
+        "default": "© 2024 Auto Parts BG. Всички права запазени."
+      }
+    ]
+  },
+  {
+    "name": "Product Page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_sku",
+        "label": "Show SKU/Part number",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show manufacturer",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_compatibility",
+        "label": "Show compatibility info",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Bulgarian Localization",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Currency"
+      },
+      {
+        "type": "select",
+        "id": "currency_format",
+        "label": "Currency format",
+        "options": [
+          {
+            "value": "suffix",
+            "label": "100 лв."
+          },
+          {
+            "value": "prefix",
+            "label": "лв. 100"
+          }
+        ],
+        "default": "suffix"
+      },
+      {
+        "type": "header",
+        "content": "Shipping Info"
+      },
+      {
+        "type": "richtext",
+        "id": "shipping_info",
+        "label": "Shipping information",
+        "default": "<p>Безплатна доставка за поръчки над 100 лв. Доставка с Еконт или Спиди.</p>"
+      }
+    ]
+  }
+] 

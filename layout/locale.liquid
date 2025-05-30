@@ -1,0 +1,14 @@
+{%- liquid
+  assign current_locale = 'bg'
+  assign request_locale = request.locale.iso_code | default: 'bg'
+  
+  if request_locale != 'bg'
+    assign canonical_url = canonical_url | replace: '/' | append: request_locale | append: '/', '/bg/'
+  endif
+-%}
+
+{%- comment -%}
+Force Bulgarian locale for all translations
+{%- endcomment -%}
+
+{%- assign locale_override = 'bg' -%} 

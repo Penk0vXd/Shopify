@@ -1,0 +1,457 @@
+{%- style -%}
+  .why-us-section {
+    padding: 80px 0;
+    background-color: var(--color-background);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-us-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(211,47,47,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  .why-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .feature-card {
+    background: var(--color-background);
+    border: 2px solid var(--color-surface);
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s;
+  }
+
+  .feature-card:hover::before {
+    left: 100%;
+  }
+
+  .feature-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  }
+
+  .feature-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1);
+  }
+
+  .feature-icon::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background: var(--color-background);
+    z-index: 1;
+  }
+
+  .feature-icon svg {
+    width: 36px;
+    height: 36px;
+    fill: var(--color-primary);
+    position: relative;
+    z-index: 2;
+  }
+
+  .feature-card__title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0 0 15px 0;
+    line-height: 1.3;
+  }
+
+  .feature-card__description {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .stats-section {
+    margin-top: 60px;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 16px;
+    color: white;
+    text-align: center;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+  }
+
+  .stat-item {
+    padding: 20px;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .why-us-section {
+      padding: 60px 0;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .feature-card {
+      padding: 30px 20px;
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .feature-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .stat-number {
+      font-size: 2rem;
+    }
+  }
+{%- endstyle -%}
+
+<section class="why-us-section">
+  <div class="why-us-container">
+    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.why_choose_us' | t }}</h2>
+    {%- if section.settings.subheading != blank -%}
+      <p class="section-subtitle">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    
+    <div class="features-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="feature-card" {{ block.shopify_attributes }}>
+            <div class="feature-icon">
+              {%- case block.settings.icon -%}
+                {%- when 'quality' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                  </svg>
+                {%- when 'experience' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                {%- when 'support' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
+                  </svg>
+                {%- when 'delivery' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19,13C19.34,13 19.67,13.04 20,13.09V10L12,4L4,10V20H11.09C11.04,19.67 11,19.34 11,19A8,8 0 0,1 19,11M19,15A4,4 0 0,0 15,19A4,4 0 0,0 19,23A4,4 0 0,0 23,19A4,4 0 0,0 19,15M17.5,19.5V21.5H20.5V19.5H17.5Z"/>
+                  </svg>
+                {%- when 'price' -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"/>
+                  </svg>
+                {%- else -%}
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+                  </svg>
+              {%- endcase -%}
+            </div>
+            <h3 class="feature-card__title">{{ block.settings.title }}</h3>
+            <p class="feature-card__description">{{ block.settings.description }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+      
+      {%- comment -%} Default features if no blocks are configured {%- endcomment -%}
+      {%- if section.blocks.size == 0 -%}
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">{{ 'features.quality' | t }}</h3>
+          <p class="feature-card__description">{{ 'features.quality_desc' | t }}</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">{{ 'features.experience' | t }}</h3>
+          <p class="feature-card__description">{{ 'features.experience_desc' | t }}</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__title">{{ 'features.support' | t }}</h3>
+          <p class="feature-card__description">{{ 'features.support_desc' | t }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+    
+    {%- if section.settings.show_stats -%}
+      <div class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">{{ section.settings.stat_years | default: '15+' }}</span>
+            <span class="stat-label">{{ 'stats.years_experience' | t | default: 'години опит' }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">{{ section.settings.stat_parts | default: '50,000+' }}</span>
+            <span class="stat-label">{{ 'stats.parts_available' | t | default: 'части на склад' }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">{{ section.settings.stat_customers | default: '10,000+' }}</span>
+            <span class="stat-label">{{ 'stats.happy_customers' | t | default: 'доволни клиенти' }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">{{ section.settings.stat_brands | default: '200+' }}</span>
+            <span class="stat-label">{{ 'stats.brands' | t | default: 'марки автомобили' }}</span>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Choose Us",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Защо да изберете нас"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Вашият надежден партньор за качествени авточасти"
+    },
+    {
+      "type": "header",
+      "content": "Statistics"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show statistics section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stat_years",
+      "label": "Years of experience",
+      "default": "15+"
+    },
+    {
+      "type": "text",
+      "id": "stat_parts",
+      "label": "Parts available",
+      "default": "50,000+"
+    },
+    {
+      "type": "text",
+      "id": "stat_customers",
+      "label": "Happy customers",
+      "default": "10,000+"
+    },
+    {
+      "type": "text",
+      "id": "stat_brands",
+      "label": "Car brands",
+      "default": "200+"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "quality",
+              "label": "Quality Check"
+            },
+            {
+              "value": "experience",
+              "label": "Experience"
+            },
+            {
+              "value": "support",
+              "label": "Customer Support"
+            },
+            {
+              "value": "delivery",
+              "label": "Fast Delivery"
+            },
+            {
+              "value": "price",
+              "label": "Best Price"
+            }
+          ],
+          "default": "quality"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Гарантирано качество"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description",
+          "default": "Работим само с проверени производители и доставчици на авточасти."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Us",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "quality",
+            "title": "Гарантирано качество",
+            "description": "Работим само с проверени производители и доставчици на авточасти."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "experience",
+            "title": "15+ години опит",
+            "description": "Обслужваме клиенти в цяла България от 2008 година."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "support",
+            "title": "Експертна поддръжка",
+            "description": "Нашите специалисти ще ви помогнат да намерите точната част."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %} 

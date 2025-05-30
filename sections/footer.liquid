@@ -1,0 +1,422 @@
+{%- style -%}
+  .footer {
+    background-color: var(--color-text);
+    color: var(--color-background);
+    margin-top: 80px;
+  }
+
+  .footer__main {
+    padding: 60px 0 40px;
+  }
+
+  .footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer__column h3 {
+    color: var(--color-background);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer__links li {
+    margin-bottom: 12px;
+  }
+
+  .footer__links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .footer__links a:hover {
+    color: var(--color-background);
+  }
+
+  .footer__contact {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .footer__contact strong {
+    color: var(--color-background);
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .footer__social {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .footer__social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-background);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .footer__social a:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px 0;
+  }
+
+  .footer__bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer__copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+  }
+
+  .footer__payment {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .footer__payment-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-right: 10px;
+  }
+
+  .payment-icons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .payment-icon {
+    width: 40px;
+    height: 25px;
+    background: var(--color-background);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .footer__bottom-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .footer__main {
+      padding: 50px 0 30px;
+    }
+    
+    .footer__social {
+      justify-content: center;
+    }
+  }
+{%- endstyle -%}
+
+<footer class="footer">
+  <div class="footer__main">
+    <div class="footer__container">
+      <div class="footer__grid">
+        
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'text' -%}
+              <div class="footer__column" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <h3>{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {%- if block.settings.subtext != blank -%}
+                  <div class="footer__contact">{{ block.settings.subtext }}</div>
+                {%- endif -%}
+              </div>
+              
+            {%- when 'link_list' -%}
+              <div class="footer__column" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <h3>{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                {%- if linklists[block.settings.menu].links.size > 0 -%}
+                  <ul class="footer__links">
+                    {%- for link in linklists[block.settings.menu].links -%}
+                      <li>
+                        <a href="{{ link.url }}">{{ link.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+              
+            {%- when 'contact' -%}
+              <div class="footer__column" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <h3>{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                <div class="footer__contact">
+                  {%- if block.settings.address != blank -%}
+                    <strong>{{ 'footer.address' | t | default: 'Адрес' }}:</strong>
+                    {{ block.settings.address }}
+                  {%- endif -%}
+                  
+                  {%- if block.settings.phone != blank -%}
+                    <strong>{{ 'footer.phone' | t | default: 'Телефон' }}:</strong>
+                    <a href="tel:{{ block.settings.phone }}" style="color: inherit;">{{ block.settings.phone }}</a>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.email != blank -%}
+                    <strong>{{ 'footer.email' | t | default: 'Имейл' }}:</strong>
+                    <a href="mailto:{{ block.settings.email }}" style="color: inherit;">{{ block.settings.email }}</a>
+                  {%- endif -%}
+                  
+                  {%- if block.settings.hours != blank -%}
+                    <strong>{{ 'footer.hours' | t | default: 'Работно време' }}:</strong>
+                    {{ block.settings.hours }}
+                  {%- endif -%}
+                </div>
+                
+                {%- if block.settings.show_social -%}
+                  <div class="footer__social">
+                    {%- if settings.social_facebook_link != blank -%}
+                      <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                      </a>
+                    {%- endif -%}
+                    
+                    {%- if settings.social_instagram_link != blank -%}
+                      <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+              
+          {%- endcase -%}
+        {%- endfor -%}
+        
+        {%- comment -%} Default content if no blocks {%- endcomment -%}
+        {%- if section.blocks.size == 0 -%}
+          <div class="footer__column">
+            <h3>{{ shop.name }}</h3>
+            <div class="footer__contact">
+              {{ 'footer.company_description' | t | default: 'Вашият надежден партньор за авточасти. Над 15 години опит в автомобилната индустрия.' }}
+            </div>
+          </div>
+          
+          <div class="footer__column">
+            <h3>{{ 'footer.quick_links' | t | default: 'Бързи връзки' }}</h3>
+            <ul class="footer__links">
+              <li><a href="/collections/all">{{ 'footer.all_products' | t | default: 'Всички продукти' }}</a></li>
+              <li><a href="/pages/about">{{ 'footer.about_us' | t | default: 'За нас' }}</a></li>
+              <li><a href="/pages/contact">{{ 'footer.contact' | t | default: 'Контакти' }}</a></li>
+              <li><a href="/pages/shipping">{{ 'footer.shipping' | t | default: 'Доставка' }}</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer__column">
+            <h3>{{ 'footer.contact_info' | t | default: 'Контакти' }}</h3>
+            <div class="footer__contact">
+              <strong>{{ 'footer.phone' | t | default: 'Телефон' }}:</strong>
+              +359 888 123 456
+              
+              <strong>{{ 'footer.email' | t | default: 'Имейл' }}:</strong>
+              info@autoparts.bg
+              
+              <strong>{{ 'footer.hours' | t | default: 'Работно време' }}:</strong>
+              {{ 'footer.business_hours' | t | default: 'Пон-Пет: 9:00-18:00' }}
+            </div>
+          </div>
+        {%- endif -%}
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer__bottom">
+    <div class="footer__container">
+      <div class="footer__bottom-content">
+        <div class="footer__copyright">
+          {{ section.settings.copyright | default: '© 2024 Auto Parts BG. Всички права запазени.' }}
+        </div>
+        
+        {%- if section.settings.show_payment_methods -%}
+          <div class="footer__payment">
+            <span class="footer__payment-text">{{ 'footer.payment_methods' | t | default: 'Приемаме' }}:</span>
+            <div class="payment-icons">
+              <div class="payment-icon">VISA</div>
+              <div class="payment-icon">MC</div>
+              <div class="payment-icon">ePay</div>
+              <div class="payment-icon">COD</div>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright text",
+      "default": "© 2024 Auto Parts BG. Всички права запазени."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_methods",
+      "label": "Show payment methods",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "name": "Link list",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact info",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Контакти"
+        },
+        {
+          "type": "text",
+          "id": "address",
+          "label": "Address"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email"
+        },
+        {
+          "type": "text",
+          "id": "hours",
+          "label": "Business hours"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show social links",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "text",
+        "settings": {
+          "heading": "Auto Parts BG",
+          "subtext": "<p>Вашият надежден партньор за авточасти. Над 15 години опит в автомобилната индустрия.</p>"
+        }
+      },
+      {
+        "type": "link_list",
+        "settings": {
+          "heading": "Бързи връзки",
+          "menu": "footer"
+        }
+      },
+      {
+        "type": "contact",
+        "settings": {
+          "heading": "Контакти",
+          "phone": "+359 888 123 456",
+          "email": "info@autoparts.bg",
+          "hours": "Пон-Пет: 9:00-18:00"
+        }
+      }
+    ]
+  }
+}
+{% endschema %} 

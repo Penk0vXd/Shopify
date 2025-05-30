@@ -1,0 +1,256 @@
+{%- style -%}
+  .hero-section {
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background) 100%);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(211,47,47,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-ymm {
+    background: var(--color-background);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    align-items: end;
+  }
+
+  .ymm-select, .ymm-search-btn {
+    padding: 12px 16px;
+    border: 2px solid var(--color-surface);
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: var(--font-body-family);
+    transition: all 0.3s ease;
+  }
+
+  .ymm-select {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .ymm-select:hover, .ymm-select:focus {
+    border-color: var(--color-primary);
+    outline: none;
+  }
+
+  .ymm-select:disabled {
+    background-color: var(--color-surface);
+    color: var(--color-text-light);
+    cursor: not-allowed;
+  }
+
+  .ymm-search-btn {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+  }
+
+  .ymm-search-btn:hover:not(:disabled) {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+  }
+
+  .ymm-search-btn:disabled {
+    background-color: var(--color-text-light);
+    border-color: var(--color-text-light);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .hero-ymm {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
+    
+    .hero-section {
+      padding: 60px 0;
+    }
+  }
+{%- endstyle -%}
+
+<section class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">{{ 'homepage.hero.title' | t | default: section.settings.title }}</h1>
+    <p class="hero-subtitle">{{ 'homepage.hero.subtitle' | t | default: section.settings.subtitle }}</p>
+    
+    {% if section.settings.show_ymm_search %}
+    <div class="ymm-selector hero-ymm">
+      <select id="year-select" class="ymm-select">
+        <option value="">{{ 'search.select_year' | t }}</option>
+        {% for year in (1990..2024) reversed %}
+          <option value="{{ year }}">{{ year }}</option>
+        {% endfor %}
+      </select>
+      
+      <select id="make-select" class="ymm-select" disabled>
+        <option value="">{{ 'search.select_make' | t }}</option>
+      </select>
+      
+      <select id="model-select" class="ymm-select" disabled>
+        <option value="">{{ 'search.select_model' | t }}</option>
+      </select>
+      
+      <button class="ymm-search-btn" disabled>
+        {{ 'search.find_parts' | t }}
+      </button>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // YMM Selector Logic
+  const ymm_data = {
+    'audi': ['A3', 'A4', 'A6', 'A8', 'Q3', 'Q5', 'Q7'],
+    'bmw': ['Series 1', 'Series 3', 'Series 5', 'Series 7', 'X1', 'X3', 'X5'],
+    'mercedes': ['A-Class', 'C-Class', 'E-Class', 'S-Class', 'GLA', 'GLC', 'GLE'],
+    'volkswagen': ['Golf', 'Polo', 'Passat', 'Tiguan', 'Touareg', 'T-Roc'],
+    'ford': ['Focus', 'Fiesta', 'Mondeo', 'Kuga', 'EcoSport'],
+    'toyota': ['Corolla', 'Camry', 'RAV4', 'Land Cruiser', 'Yaris'],
+    'honda': ['Civic', 'Accord', 'CR-V', 'HR-V', 'Jazz'],
+    'nissan': ['Qashqai', 'X-Trail', 'Juke', 'Micra', 'Leaf'],
+    'mazda': ['3', '6', 'CX-3', 'CX-5', 'MX-5'],
+    'peugeot': ['208', '308', '3008', '5008', '2008'],
+    'renault': ['Clio', 'Megane', 'Captur', 'Kadjar', 'Scenic'],
+    'skoda': ['Octavia', 'Superb', 'Fabia', 'Kodiaq', 'Karoq'],
+    'opel': ['Astra', 'Corsa', 'Insignia', 'Mokka', 'Crossland'],
+    'fiat': ['500', 'Panda', 'Tipo', '500X', 'Ducato'],
+    'volvo': ['S60', 'S90', 'XC40', 'XC60', 'XC90']
+  };
+
+  const yearSelect = document.getElementById('year-select');
+  const makeSelect = document.getElementById('make-select');
+  const modelSelect = document.getElementById('model-select');
+  const searchBtn = document.querySelector('.ymm-search-btn');
+
+  if (yearSelect && makeSelect && modelSelect && searchBtn) {
+    yearSelect.addEventListener('change', function() {
+      if (this.value) {
+        makeSelect.disabled = false;
+        makeSelect.innerHTML = '<option value="">{{ "search.select_make" | t }}</option>';
+        Object.keys(ymm_data).forEach(make => {
+          makeSelect.innerHTML += `<option value="${make}">${make.charAt(0).toUpperCase() + make.slice(1)}</option>`;
+        });
+      } else {
+        makeSelect.disabled = true;
+        modelSelect.disabled = true;
+        searchBtn.disabled = true;
+      }
+    });
+
+    makeSelect.addEventListener('change', function() {
+      if (this.value) {
+        modelSelect.disabled = false;
+        modelSelect.innerHTML = '<option value="">{{ "search.select_model" | t }}</option>';
+        ymm_data[this.value].forEach(model => {
+          modelSelect.innerHTML += `<option value="${model.toLowerCase().replace(/\s+/g, '-')}">${model}</option>`;
+        });
+      } else {
+        modelSelect.disabled = true;
+        searchBtn.disabled = true;
+      }
+    });
+
+    modelSelect.addEventListener('change', function() {
+      searchBtn.disabled = !this.value;
+    });
+
+    searchBtn.addEventListener('click', function() {
+      const year = yearSelect.value;
+      const make = makeSelect.value;
+      const model = modelSelect.value;
+      
+      if (year && make && model) {
+        window.location.href = `/collections/${make}/${model}?year=${year}`;
+      }
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": ""
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ymm_search",
+      "label": "Show Year/Make/Model search",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %} 

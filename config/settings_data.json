@@ -1,0 +1,24 @@
+{
+  "current": {
+    "locale": "bg",
+    "force_bulgarian": true,
+    "color_primary": "#D32F2F",
+    "color_primary_dark": "#B71C1C", 
+    "color_background": "#FFFFFF",
+    "color_surface": "#F5F5F5",
+    "color_text": "#212121",
+    "color_text_light": "#757575",
+    "type_header_font": "montserrat_n6",
+    "type_body_font": "inter_n4",
+    "type_base_size": 16,
+    "show_brand_logos": true,
+    "brand_grid_columns": "5",
+    "enable_ymm_search": true,
+    "ymm_start_year": 1990,
+    "show_trust_badges": true,
+    "delivery_time": "Доставка до 24ч",
+    "warranty_text": "2 години гаранция",
+    "sticky_header": true,
+    "logo_height": "60px"
+  }
+} 
