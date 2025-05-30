@@ -1,242 +1,244 @@
 {
   "general": {
     "404": {
-      "title": "404 - Страницата не е намерена",
-      "subtext": "Страницата, която търсите, не съществува.",
-      "link": "Обратно към магазина"
+      "title": "404 - Page not found",
+      "subtext": "The page you are looking for does not exist.",
+      "link": "Back to shop"
     },
     "accessibility": {
-      "skip_to_content": "Прескочи към съдържанието",
-      "skip_to_text": "Прескочи към текста",
-      "close_modal": "Затвори",
-      "close": "Затвори",
-      "refresh_page": "Обнови страницата",
+      "skip_to_content": "Skip to content",
+      "skip_to_text": "Skip to text",
+      "close_modal": "Close",
+      "close": "Close",
+      "refresh_page": "Refresh page",
       "link_messages": {
-        "new_window": "Отваря се в нов прозорец.",
-        "external": "Отваря външен уебсайт."
+        "new_window": "Opens in a new window.",
+        "external": "Opens external website."
       }
     },
     "meta": {
-      "tags": "Етикети: \"{{ tags }}\"",
-      "page": "Страница {{ page }}"
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
     },
     "breadcrumbs": {
-      "home": "Начало",
-      "home_link_title": "Обратно към началната страница"
+      "home": "Home",
+      "home_link_title": "Back to homepage"
     },
     "newsletter": {
-      "title": "Абонирайте се за нашия бюлетин",
-      "email_placeholder": "Вашият имейл",
-      "submit": "Абонирай се",
-      "success": "Благодарим за абонамента!"
+      "title": "Subscribe to our newsletter",
+      "email_placeholder": "Your email",
+      "submit": "Subscribe",
+      "success": "Thanks for subscribing!"
     },
     "search": {
-      "title": "Търсене",
-      "placeholder": "Търсете части...",
-      "submit": "Търси",
-      "results_with_count": "{{ count }} резултата за \"{{ terms }}\"",
-      "no_results": "Няма резултати за \"{{ terms }}\"",
-      "results_with_count_and_term": "{{ count }} резултата за \"{{ terms }}\""
+      "title": "Search",
+      "placeholder": "Search for parts...",
+      "submit": "Search",
+      "results_with_count": "{{ count }} results for \"{{ terms }}\"",
+      "no_results": "No results for \"{{ terms }}\"",
+      "results_with_count_and_term": "{{ count }} results for \"{{ terms }}\""
     },
     "social": {
-      "share_on_facebook": "Сподели във Facebook",
-      "share_on_twitter": "Сподели в Twitter",
-      "share_on_pinterest": "Закачи в Pinterest",
+      "share_on_facebook": "Share on Facebook",
+      "share_on_twitter": "Share on Twitter",
+      "share_on_pinterest": "Pin on Pinterest",
       "alt_text": {
-        "share_on_facebook": "Сподели във Facebook",
-        "share_on_twitter": "Туитни в Twitter",
-        "share_on_pinterest": "Закачи в Pinterest"
+        "share_on_facebook": "Share on Facebook",
+        "share_on_twitter": "Tweet on Twitter",
+        "share_on_pinterest": "Pin on Pinterest"
       }
     },
     "share": {
-      "success_message": "Линкът е копиран в клипборда!"
-    }
+      "success_message": "Link copied to clipboard!"
+    },
+    "parts_available": "parts available",
+    "products": "products",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "← Previous",
+      "next": "Next →"
+    },
+    "continue_shopping": "Continue shopping"
   },
   "date_formats": {
-    "month_day_year": "%d %B %Y"
+    "month_day_year": "%B %d, %Y"
   },
   "homepage": {
     "hero": {
       "title": "Original Auto Parts for Your Vehicle",
-      "subtitle": "Над 50,000 части на склад. Доставка до 24 часа."
+      "subtitle": "Over 50,000 parts in stock. Delivery within 24 hours."
     },
-    "browse_by_brand": "Разгледайте по марка",
-    "popular_categories": "Популярни категории",
-    "why_choose_us": "Защо да изберете нас",
-    "featured_products": "Препоръчани продукти"
+    "browse_by_brand": "Browse by Brand",
+    "popular_categories": "Popular Categories",
+    "why_choose_us": "Why Choose Us",
+    "featured_products": "Featured Products"
   },
   "search": {
-    "select_year": "Изберете година",
-    "select_make": "Изберете марка", 
-    "select_model": "Изберете модел",
-    "find_parts": "Намери части"
+    "select_year": "Select Year",
+    "select_make": "Select Make", 
+    "select_model": "Select Model",
+    "find_parts": "Find Parts"
   },
   "trust": {
-    "fast_delivery": "Доставка до 24ч",
-    "fast_delivery_desc": "Бърза и надеждна доставка до цялата страна",
-    "warranty": "2 години гаранция", 
-    "warranty_desc": "Гаранция за качество на всички продукти",
-    "original_parts": "100% оригинални части",
-    "original_parts_desc": "Само оригинални части от проверени доставчици",
-    "in_stock": "Наличност на склад",
-    "in_stock_desc": "Голям асортимент винаги на наличност"
+    "fast_delivery": "24h Delivery",
+    "fast_delivery_desc": "Fast and reliable delivery nationwide",
+    "warranty": "2 Year Warranty", 
+    "warranty_desc": "Quality guarantee on all products",
+    "original_parts": "100% Original Parts",
+    "original_parts_desc": "Only genuine parts from verified suppliers",
+    "in_stock": "In Stock",
+    "in_stock_desc": "Large inventory always available"
   },
   "categories": {
-    "engine": "Двигател",
-    "engine_desc": "Части за двигател и системи",
-    "brakes": "Спирачки", 
-    "brakes_desc": "Дискове, накладки, апарати",
-    "suspension": "Ходова част",
-    "suspension_desc": "Амортисьори, пружини, носачи",
-    "electrical": "Електрика",
-    "electrical_desc": "Акумулатори, стартери, алтернатори",
-    "filters": "Филтри",
-    "filters_desc": "Въздушни, маслени, горивни филтри",
-    "body": "Каросерия",
-    "body_desc": "Брони, огледала, стъкла"
+    "engine": "Engine",
+    "engine_desc": "Engine parts and systems",
+    "brakes": "Brakes", 
+    "brakes_desc": "Discs, pads, calipers",
+    "suspension": "Suspension",
+    "suspension_desc": "Shocks, springs, control arms",
+    "electrical": "Electrical",
+    "electrical_desc": "Batteries, starters, alternators",
+    "filters": "Filters",
+    "filters_desc": "Air, oil, fuel filters",
+    "body": "Body",
+    "body_desc": "Bumpers, mirrors, glass"
   },
   "features": {
-    "quality": "Гарантирано качество",
-    "quality_desc": "Работим само с проверени производители и доставчици на авточасти.",
-    "experience": "15+ години опит",
-    "experience_desc": "Обслужваме клиенти в цяла България от 2008 година.",
-    "support": "Експертна поддръжка",
-    "support_desc": "Нашите специалисти ще ви помогнат да намерите точната част."
+    "quality": "Guaranteed Quality",
+    "quality_desc": "We work only with verified manufacturers and auto parts suppliers.",
+    "experience": "15+ Years Experience",
+    "experience_desc": "Serving customers throughout Bulgaria since 2008.",
+    "support": "Expert Support",
+    "support_desc": "Our specialists will help you find the exact part."
   },
   "products": {
     "product": {
-      "add_to_cart": "Добави в количката",
-      "view_details": "Виж детайли",
-      "in_stock": "В наличност",
-      "out_of_stock": "Изчерпано",
-      "sold_out": "Изчерпано",
-      "unavailable": "Недостъпен",
-      "no_image": "Няма изображение",
-      "sku": "Каталожен номер",
-      "vendor": "Производител",
-      "quantity": "Количество",
-      "price": "Цена",
-      "sale": "Промоция",
-      "save": "Спестявате",
-      "compare_at": "Сравни с",
-      "unit_price": "Единична цена",
+      "add_to_cart": "Add to Cart",
+      "view_details": "View Details",
+      "in_stock": "In Stock",
+      "out_of_stock": "Out of Stock",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "no_image": "No image",
+      "sku": "SKU",
+      "vendor": "Vendor",
+      "quantity": "Quantity",
+      "price": "Price",
+      "sale": "Sale",
+      "save": "Save",
+      "compare_at": "Compare at",
+      "unit_price": "Unit price",
       "media": {
-        "image_available": "Изображение {{ index }} налично"
+        "image_available": "Image {{ index }} available"
       }
     }
   },
   "collections": {
     "general": {
-      "view_all": "Виж всички продукти",
-      "no_matches": "Няма налични продукти в момента."
+      "view_all": "View all products",
+      "no_matches": "No products available at the moment."
     },
     "sorting": {
-      "title": "Подреди по:",
-      "featured": "Препоръчани",
-      "best_selling": "Най-продавани",
-      "az": "От А до Я",
-      "za": "От Я до А",
-      "price_ascending": "Цена: ниска към висока",
-      "price_descending": "Цена: висока към ниска",
-      "date_descending": "Най-нови"
+      "title": "Sort by:",
+      "featured": "Featured",
+      "best_selling": "Best Selling",
+      "az": "A to Z",
+      "za": "Z to A",
+      "price_ascending": "Price: Low to High",
+      "price_descending": "Price: High to Low",
+      "date_descending": "Newest"
     }
   },
   "cart": {
     "general": {
-      "title": "Количка",
-      "note": "Добавете бележка към поръчката",
-      "remove": "Премахни",
-      "subtotal": "Междинна сума",
-      "shipping": "Доставка",
-      "taxes": "Данъци",
-      "total": "Общо",
-      "update": "Обнови количката",
-      "checkout": "Поръчай",
-      "empty": "Вашата количка е празна",
-      "continue_shopping": "Продължи пазаруването",
-      "close_cart": "Затвори количката"
+      "title": "Cart",
+      "note": "Add a note to your order",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "taxes": "Taxes",
+      "total": "Total",
+      "update": "Update Cart",
+      "checkout": "Checkout",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue Shopping",
+      "close_cart": "Close Cart"
     }
   },
   "sections": {
     "cart": {
-      "cart_error": "Грешка при актуализиране на количката",
-      "cart_quantity_error_html": "Можете да добавите само {{ quantity }} от този артикул в количката"
+      "cart_error": "Error updating cart",
+      "cart_quantity_error_html": "You can only add {{ quantity }} of this item to cart"
     },
     "slideshow": {
-      "pause_slideshow": "Пауза на слайдшоуто",
-      "play_slideshow": "Пусни слайдшоуто"
+      "pause_slideshow": "Pause slideshow",
+      "play_slideshow": "Play slideshow"
     },
     "collection_template": {
-      "title": "Колекция",
-      "empty": "Няма намерени продукти"
+      "title": "Collection",
+      "empty": "No products found",
+      "products_count": "{{ count }} products",
+      "use_fewer_filters_html": "Use fewer filters or <a href=\"{{ link }}\">clear all</a>"
     },
     "header": {
-      "menu": "Меню"
+      "menu": "Menu"
     }
   },
   "customer": {
     "account": {
-      "title": "Моят профил",
-      "details": "Детайли на профила",
-      "view_addresses": "Виж адресите",
-      "return": "Обратно към профила"
+      "title": "My Account",
+      "details": "Account Details",
+      "view_addresses": "View Addresses",
+      "return": "Return to Account"
     },
     "login": {
-      "title": "Вход",
-      "email": "Имейл",
-      "password": "Парола",
-      "forgot_password": "Забравена парола?",
-      "sign_in": "Влез",
-      "cancel": "Обратно към магазина",
-      "guest_title": "Продължи като гост",
-      "guest_continue": "Продължи"
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "forgot_password": "Forgot password?",
+      "sign_in": "Sign In",
+      "cancel": "Return to Store",
+      "guest_title": "Continue as guest",
+      "guest_continue": "Continue"
     }
   },
   "footer": {
-    "social_platform": "{{ name }} в {{ platform }}",
-    "copyright": "Авторски права",
-    "payment_methods": "Приемаме",
-    "phone": "+359 888 123 456",
-    "email": "info@autoparts.bg",
-    "hours": "Пон-Пет: 9:00-18:00",
-    "company_description": "Вашият надежден партньор за авточасти. Над 15 години опит в автомобилната индустрия.",
-    "quick_links": "Бързи връзки",
-    "all_products": "Всички продукти",
-    "about_us": "За нас",
-    "contact": "Контакти",
-    "shipping": "Доставка",
-    "contact_info": "Контакти",
-    "business_hours": "Пон-Пет: 9:00-18:00"
+    "social_platform": "{{ name }} on {{ platform }}",
+    "copyright": "Copyright",
+    "payment_methods": "Payment methods",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Business Hours",
+    "address": "Address",
+    "company_description": "Your trusted partner for auto parts. Over 15 years of experience in the automotive industry.",
+    "quick_links": "Quick Links",
+    "all_products": "All Products",
+    "about_us": "About Us",
+    "contact": "Contact",
+    "shipping": "Shipping",
+    "contact_info": "Contact Info",
+    "business_hours": "Mon-Fri: 9:00-18:00"
   },
   "layout": {
     "cart": {
-      "title": "Количка",
+      "title": "Cart",
       "items_count": {
-        "one": "артикул",
-        "other": "артикула"
+        "one": "item",
+        "other": "items"
       }
     },
     "customer": {
-      "account": "Профил",
-      "logged_in_as_html": "Влезли сте като {{ first_name }}",
-      "log_out": "Изход",
-      "log_in": "Вход",
-      "create_account": "Създай профил"
+      "account": "Account",
+      "logged_in_as_html": "Logged in as {{ first_name }}",
+      "log_out": "Log out",
+      "log_in": "Log in",
+      "create_account": "Create account"
     }
   },
   "stats": {
-    "years_experience": "години опит",
-    "parts_available": "части на склад",
-    "happy_customers": "доволни клиенти", 
-    "brands": "марки автомобили"
-  },
-  "continue_shopping": "Продължи пазаруването",
-  "products": "продукта",
-  "pagination": {
-    "label": "Пагинация",
-    "page": "Страница {{ number }}",
-    "current_page": "Страница {{ current }} от {{ total }}",
-    "previous": "← Назад",
-    "next": "Напред →"
+    "years_experience": "years experience",
+    "parts_available": "parts in stock",
+    "happy_customers": "happy customers", 
+    "brands": "car brands"
   }
 } 

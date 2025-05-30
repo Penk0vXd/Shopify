@@ -218,7 +218,7 @@
 
 <section class="featured-products-section">
   <div class="featured-container">
-    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.featured_products' }}</h2>
+    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.featured_products' | t }}</h2>
     {%- if section.settings.subheading != blank -%}
       <p class="section-subtitle">{{ section.settings.subheading }}</p>
     {%- endif -%}
@@ -239,13 +239,13 @@
                        loading="lazy">
                 {%- else -%}
                   <div class="product-card__image" style="background-color: var(--color-surface); display: flex; align-items: center; justify-content: center; color: var(--color-text-light);">
-                    {{ 'products.product.no_image' | t | default: 'Няма изображение' }}
+                    {{ 'products.product.no_image' | t }}
                   </div>
                 {%- endif -%}
                 
                 {%- if product.compare_at_price > product.price -%}
                   <div class="product-card__badge">
-                    {{ 'products.product.sale' | t | default: 'Промоция' }}
+                    {{ 'products.product.sale' | t }}
                   </div>
                 {%- endif -%}
               </div>
@@ -290,12 +290,12 @@
       
       {%- if section.settings.show_view_all and collection.products.size > products_to_show -%}
         <a href="{{ collection.url }}" class="view-all-button">
-          {{ 'collections.general.view_all' | t | default: 'Виж всички продукти' }}
+          {{ 'collections.general.view_all' | t }}
         </a>
       {%- endif -%}
     {%- else -%}
       <div style="text-align: center; padding: 40px; color: var(--color-text-light);">
-        {{ 'collections.general.no_matches' | t | default: 'Няма налични продукти в момента.' }}
+        {{ 'collections.general.no_matches' | t }}
       </div>
     {%- endif -%}
   </div>

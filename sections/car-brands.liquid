@@ -155,7 +155,7 @@
             <h3 class="brand-card__title">{{ block.settings.brand_name }}</h3>
             
             {%- if block.settings.parts_count != blank -%}
-              <p class="brand-card__parts-count">{{ block.settings.parts_count }} {{ 'general.parts_available' | t | default: 'части налични' }}</p>
+              <p class="brand-card__parts-count">{{ block.settings.parts_count }} {{ 'general.parts_available' | t }}</p>
             {%- endif -%}
           </a>
         {%- endif -%}

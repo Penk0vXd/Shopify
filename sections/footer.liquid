@@ -197,22 +197,22 @@
                 {%- endif -%}
                 <div class="footer__contact">
                   {%- if block.settings.address != blank -%}
-                    <strong>{{ 'footer.address' | t | default: 'Адрес' }}:</strong>
+                    <strong>{{ 'footer.address' | t }}:</strong>
                     {{ block.settings.address }}
                   {%- endif -%}
                   
                   {%- if block.settings.phone != blank -%}
-                    <strong>{{ 'footer.phone' | t | default: 'Телефон' }}:</strong>
+                    <strong>{{ 'footer.phone' | t }}:</strong>
                     <a href="tel:{{ block.settings.phone }}" style="color: inherit;">{{ block.settings.phone }}</a>
                   {%- endif -%}
                   
                   {%- if block.settings.email != blank -%}
-                    <strong>{{ 'footer.email' | t | default: 'Имейл' }}:</strong>
+                    <strong>{{ 'footer.email' | t }}:</strong>
                     <a href="mailto:{{ block.settings.email }}" style="color: inherit;">{{ block.settings.email }}</a>
                   {%- endif -%}
                   
                   {%- if block.settings.hours != blank -%}
-                    <strong>{{ 'footer.hours' | t | default: 'Работно време' }}:</strong>
+                    <strong>{{ 'footer.hours' | t }}:</strong>
                     {{ block.settings.hours }}
                   {%- endif -%}
                 </div>
@@ -246,31 +246,31 @@
           <div class="footer__column">
             <h3>{{ shop.name }}</h3>
             <div class="footer__contact">
-              {{ 'footer.company_description' | t | default: 'Вашият надежден партньор за авточасти. Над 15 години опит в автомобилната индустрия.' }}
+              {{ 'footer.company_description' | t }}
             </div>
           </div>
           
           <div class="footer__column">
-            <h3>{{ 'footer.quick_links' | t | default: 'Бързи връзки' }}</h3>
+            <h3>{{ 'footer.quick_links' | t }}</h3>
             <ul class="footer__links">
-              <li><a href="/collections/all">{{ 'footer.all_products' | t | default: 'Всички продукти' }}</a></li>
-              <li><a href="/pages/about">{{ 'footer.about_us' | t | default: 'За нас' }}</a></li>
-              <li><a href="/pages/contact">{{ 'footer.contact' | t | default: 'Контакти' }}</a></li>
-              <li><a href="/pages/shipping">{{ 'footer.shipping' | t | default: 'Доставка' }}</a></li>
+              <li><a href="/collections/all">{{ 'footer.all_products' | t }}</a></li>
+              <li><a href="/pages/about">{{ 'footer.about_us' | t }}</a></li>
+              <li><a href="/pages/contact">{{ 'footer.contact' | t }}</a></li>
+              <li><a href="/pages/shipping">{{ 'footer.shipping' | t }}</a></li>
             </ul>
           </div>
           
           <div class="footer__column">
-            <h3>{{ 'footer.contact_info' | t | default: 'Контакти' }}</h3>
+            <h3>{{ 'footer.contact_info' | t }}</h3>
             <div class="footer__contact">
-              <strong>{{ 'footer.phone' | t | default: 'Телефон' }}:</strong>
+              <strong>{{ 'footer.phone' | t }}:</strong>
               +359 888 123 456
               
-              <strong>{{ 'footer.email' | t | default: 'Имейл' }}:</strong>
+              <strong>{{ 'footer.email' | t }}:</strong>
               info@autoparts.bg
               
-              <strong>{{ 'footer.hours' | t | default: 'Работно време' }}:</strong>
-              {{ 'footer.business_hours' | t | default: 'Пон-Пет: 9:00-18:00' }}
+              <strong>{{ 'footer.hours' | t }}:</strong>
+              {{ 'footer.business_hours' | t }}
             </div>
           </div>
         {%- endif -%}
@@ -283,12 +283,12 @@
     <div class="footer__container">
       <div class="footer__bottom-content">
         <div class="footer__copyright">
-          {{ section.settings.copyright | default: '© 2024 Auto Parts BG. Всички права запазени.' }}
+          {{ section.settings.copyright | default: '© 2024 Auto Parts BG. All rights reserved.' }}
         </div>
         
         {%- if section.settings.show_payment_methods -%}
           <div class="footer__payment">
-            <span class="footer__payment-text">{{ 'footer.payment_methods' | t | default: 'Приемаме' }}:</span>
+            <span class="footer__payment-text">{{ 'footer.payment_methods' | t }}:</span>
             <div class="payment-icons">
               <div class="payment-icon">VISA</div>
               <div class="payment-icon">MC</div>
@@ -310,7 +310,7 @@
       "type": "text",
       "id": "copyright",
       "label": "Copyright text",
-      "default": "© 2024 Auto Parts BG. Всички права запазени."
+      "default": "© 2024 Auto Parts BG. All rights reserved."
     },
     {
       "type": "checkbox",

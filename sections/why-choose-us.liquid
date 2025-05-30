@@ -219,7 +219,7 @@
 
 <section class="why-us-section">
   <div class="why-us-container">
-    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.why_choose_us' }}</h2>
+    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.why_choose_us' | t }}</h2>
     {%- if section.settings.subheading != blank -%}
       <p class="section-subtitle">{{ section.settings.subheading }}</p>
     {%- endif -%}
@@ -301,19 +301,19 @@
         <div class="stats-grid">
           <div class="stat-item">
             <span class="stat-number">{{ section.settings.stat_years | default: '15+' }}</span>
-            <span class="stat-label">{{ 'stats.years_experience' | t | default: 'години опит' }}</span>
+            <span class="stat-label">{{ 'stats.years_experience' | t }}</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">{{ section.settings.stat_parts | default: '50,000+' }}</span>
-            <span class="stat-label">{{ 'stats.parts_available' | t | default: 'части на склад' }}</span>
+            <span class="stat-label">{{ 'stats.parts_available' | t }}</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">{{ section.settings.stat_customers | default: '10,000+' }}</span>
-            <span class="stat-label">{{ 'stats.happy_customers' | t | default: 'доволни клиенти' }}</span>
+            <span class="stat-label">{{ 'stats.happy_customers' | t }}</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">{{ section.settings.stat_brands | default: '200+' }}</span>
-            <span class="stat-label">{{ 'stats.brands' | t | default: 'марки автомобили' }}</span>
+            <span class="stat-label">{{ 'stats.brands' | t }}</span>
           </div>
         </div>
       </div>

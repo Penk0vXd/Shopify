@@ -221,8 +221,8 @@
       </svg>
     </div>
     
-    <h2 class="newsletter-title">{{ section.settings.heading | default: 'general.newsletter.title' }}</h2>
-    <p class="newsletter-subtitle">{{ section.settings.subheading | default: 'Получавайте информация за нови продукти, промоции и автомобилни съвети директно в имейла си.' }}</p>
+    <h2 class="newsletter-title">{{ section.settings.heading | default: 'general.newsletter.title' | t }}</h2>
+    <p class="newsletter-subtitle">{{ section.settings.subheading | default: 'Get information about new products, promotions, and automotive tips directly in your email.' }}</p>
     
     <form class="newsletter-form" action="{{ routes.root_url }}contact#contact_form" method="post" accept-charset="UTF-8">
       <input type="hidden" name="form_type" value="customer">
@@ -256,7 +256,7 @@
               <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
             </svg>
           </div>
-          <span>{{ section.settings.benefit_1 | default: 'Ексклузивни промоции' }}</span>
+          <span>{{ section.settings.benefit_1 | default: 'Exclusive promotions' }}</span>
         </div>
         
         <div class="benefit">
@@ -265,7 +265,7 @@
               <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
             </svg>
           </div>
-          <span>{{ section.settings.benefit_2 | default: 'Нови продукти първи' }}</span>
+          <span>{{ section.settings.benefit_2 | default: 'New products first' }}</span>
         </div>
         
         <div class="benefit">
@@ -274,14 +274,14 @@
               <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
             </svg>
           </div>
-          <span>{{ section.settings.benefit_3 | default: 'Полезни съвети' }}</span>
+          <span>{{ section.settings.benefit_3 | default: 'Useful tips' }}</span>
         </div>
       </div>
     {%- endif -%}
     
     {%- if section.settings.show_disclaimer -%}
       <p class="newsletter-disclaimer">
-        {{ section.settings.disclaimer | default: 'Можете да се отпишете по всяко време. Не споделяме вашата информация с трети страни.' }}
+        {{ section.settings.disclaimer | default: 'You can unsubscribe at any time. We do not share your information with third parties.' }}
       </p>
     {%- endif -%}
   </div>
