@@ -219,7 +219,7 @@
 
 <section class="why-us-section">
   <div class="why-us-container">
-    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.why_choose_us' | t }}</h2>
+    <h2 class="section-title">{{ section.settings.heading | default: 'Защо да изберете нас' }}</h2>
     {%- if section.settings.subheading != blank -%}
       <p class="section-subtitle">{{ section.settings.subheading }}</p>
     {%- endif -%}
@@ -270,8 +270,8 @@
               <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,17L5,12L6.41,10.59L10,14.17L17.59,6.58L19,8L10,17Z"/>
             </svg>
           </div>
-          <h3 class="feature-card__title">{{ 'features.quality' | t }}</h3>
-          <p class="feature-card__description">{{ 'features.quality_desc' | t }}</p>
+          <h3 class="feature-card__title">Гарантирано качество</h3>
+          <p class="feature-card__description">Работим само с проверени производители и доставчици на авточасти.</p>
         </div>
         
         <div class="feature-card">
@@ -280,8 +280,8 @@
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
             </svg>
           </div>
-          <h3 class="feature-card__title">{{ 'features.experience' | t }}</h3>
-          <p class="feature-card__description">{{ 'features.experience_desc' | t }}</p>
+          <h3 class="feature-card__title">15+ години опит</h3>
+          <p class="feature-card__description">Обслужваме клиенти в цяла България от 2008 година.</p>
         </div>
         
         <div class="feature-card">
@@ -290,8 +290,8 @@
               <path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z"/>
             </svg>
           </div>
-          <h3 class="feature-card__title">{{ 'features.support' | t }}</h3>
-          <p class="feature-card__description">{{ 'features.support_desc' | t }}</p>
+          <h3 class="feature-card__title">Експертна поддръжка</h3>
+          <p class="feature-card__description">Нашите специалисти ще ви помогнат да намерите точната част.</p>
         </div>
       {%- endif -%}
     </div>
@@ -301,19 +301,19 @@
         <div class="stats-grid">
           <div class="stat-item">
             <span class="stat-number">{{ section.settings.stat_years | default: '15+' }}</span>
-            <span class="stat-label">{{ 'stats.years_experience' | t }}</span>
+            <span class="stat-label">години опит</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">{{ section.settings.stat_parts | default: '50,000+' }}</span>
-            <span class="stat-label">{{ 'stats.parts_available' | t }}</span>
+            <span class="stat-label">части на склад</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">{{ section.settings.stat_customers | default: '10,000+' }}</span>
-            <span class="stat-label">{{ 'stats.happy_customers' | t }}</span>
+            <span class="stat-label">доволни клиенти</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">{{ section.settings.stat_brands | default: '200+' }}</span>
-            <span class="stat-label">{{ 'stats.brands' | t }}</span>
+            <span class="stat-label">марки автомобили</span>
           </div>
         </div>
       </div>

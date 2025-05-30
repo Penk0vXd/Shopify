@@ -21,8 +21,8 @@
 
     <title>
       {{ page_title }}
-      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
-      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- if current_tags %} &ndash; Етикети: {{ current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; Страница {{ current_page }}{% endif -%}
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
@@ -204,7 +204,7 @@
 
   <body class="gradient">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
-      {{ 'accessibility.skip_to_text' | t }}
+      Прескочи към текста
     </a>
 
     {%- if settings.cart_type == 'notification' -%}
@@ -221,7 +221,7 @@
     {% section 'footer' %}
 
     <ul hidden>
-      <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+      <li id="a11y-refresh-page-message">Обнови страницата</li>
     </ul>
 
     <script>
@@ -235,21 +235,21 @@
       };
 
       window.cartStrings = {
-        error: `{{ 'sections.cart.cart_error' | t }}`,
-        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
+        error: `Грешка при актуализиране на количката`,
+        quantityError: `Можете да добавите само [quantity] от този артикул в количката`
       }
 
       window.variantStrings = {
-        addToCart: `{{ 'products.product.add_to_cart' | t }}`,
-        soldOut: `{{ 'products.product.sold_out' | t }}`,
-        unavailable: `{{ 'products.product.unavailable' | t }}`,
+        addToCart: `Добави в количката`,
+        soldOut: `Изчерпано`,
+        unavailable: `Недостъпен`,
       }
 
       window.accessibilityStrings = {
-        imageAvailable: `{{ 'products.product.media.image_available' | t: index: '[index]' }}`,
-        shareSuccess: `{{ 'general.share.success_message' | t }}`,
-        pauseSlideshow: `{{ 'sections.slideshow.pause_slideshow' | t }}`,
-        playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
+        imageAvailable: `Изображение [index] е налично`,
+        shareSuccess: `Линкът е копиран в клипборда!`,
+        pauseSlideshow: `Пауза на слайдшоуто`,
+        playSlideshow: `Пусни слайдшоуто`,
       }
     </script>
 

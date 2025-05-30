@@ -275,40 +275,24 @@
       {%- if collection.description != blank -%}
         <div class="collection-description">{{ collection.description }}</div>
       {%- endif -%}
+      <div class="collection-count">
+        {{ collection.products.size }} продукта
+      </div>
     </div>
 
     {%- if collection.products.size > 0 -%}
       
       <div class="collection-controls">
-        <div class="collection-count">
-          {{ 'sections.collection_template.products_count' | t: count: collection.products.size | default: collection.products.size }} 
-          {{ 'general.products' | t }}
-        </div>
-        
         <div class="collection-sorting">
-          <label for="sort-select">{{ 'collections.sorting.title' | t }}</label>
-          <select id="sort-select" class="sort-select" onchange="location.href=this.value">
-            <option value="{{ collection.url }}?sort_by=manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>
-              {{ 'collections.sorting.featured' | t }}
-            </option>
-            <option value="{{ collection.url }}?sort_by=best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>
-              {{ 'collections.sorting.best_selling' | t }}
-            </option>
-            <option value="{{ collection.url }}?sort_by=title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>
-              {{ 'collections.sorting.az' | t }}
-            </option>
-            <option value="{{ collection.url }}?sort_by=title-descending" {% if collection.sort_by == 'title-descending' %}selected{% endif %}>
-              {{ 'collections.sorting.za' | t }}
-            </option>
-            <option value="{{ collection.url }}?sort_by=price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>
-              {{ 'collections.sorting.price_ascending' | t }}
-            </option>
-            <option value="{{ collection.url }}?sort_by=price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>
-              {{ 'collections.sorting.price_descending' | t }}
-            </option>
-            <option value="{{ collection.url }}?sort_by=created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>
-              {{ 'collections.sorting.date_descending' | t }}
-            </option>
+          <label for="sort-select">Подреди по:</label>
+          <select id="sort-select" name="sort_by">
+            <option value="manual">Препоръчани</option>
+            <option value="best-selling">Най-продавани</option>
+            <option value="title-ascending">От А до Я</option>
+            <option value="title-descending">От Я до А</option>
+            <option value="price-ascending">Цена: ниска към висока</option>
+            <option value="price-descending">Цена: висока към ниска</option>
+            <option value="created-descending">Най-нови</option>
           </select>
         </div>
       </div>
@@ -325,13 +309,13 @@
                        loading="lazy">
                 {%- else -%}
                   <div class="product-card__image" style="background-color: var(--color-surface); display: flex; align-items: center; justify-content: center; color: var(--color-text-light);">
-                    {{ 'products.product.no_image' | t }}
+                    Няма изображение
                   </div>
                 {%- endif -%}
                 
                 {%- if product.compare_at_price > product.price -%}
                   <div class="product-card__badge">
-                    {{ 'products.product.sale' | t }}
+                    Промоция
                   </div>
                 {%- endif -%}
               </div>
@@ -363,9 +347,9 @@
                         class="product-card__button"
                         {% unless product.available %}disabled{% endunless %}>
                   {%- if product.available -%}
-                    {{ 'products.product.add_to_cart' | t }}
+                    Добави в количката
                   {%- else -%}
-                    {{ 'products.product.sold_out' | t }}
+                    Изчерпано
                   {%- endif -%}
                 </button>
               </form>
@@ -376,10 +360,10 @@
 
       {%- if paginate.pages > 1 -%}
         {% paginate collection.products by 24 %}
-          <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+          <nav class="pagination" role="navigation" aria-label="Пагинация">
             {%- if paginate.previous -%}
-              <a href="{{ paginate.previous.url }}" class="pagination__item">
-                {{ 'general.pagination.previous' | t }}
+              <a href="{{ paginate.previous.url }}" class="pagination__prev">
+                ← Назад
               </a>
             {%- endif -%}
 
@@ -396,8 +380,8 @@
             {%- endfor -%}
 
             {%- if paginate.next -%}
-              <a href="{{ paginate.next.url }}" class="pagination__item">
-                {{ 'general.pagination.next' | t }}
+              <a href="{{ paginate.next.url }}" class="pagination__next">
+                Напред →
               </a>
             {%- endif -%}
           </nav>
@@ -407,10 +391,10 @@
     {%- else -%}
       
       <div class="empty-collection">
-        <h2>{{ 'sections.collection_template.empty' | t }}</h2>
-        <p>{{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url }}</p>
+        <h2>Няма намерени продукти</h2>
+        <p>Използвайте по-малко филтри или <a href="{{ collection.url }}">премахнете всички</a></p>
         <a href="{{ routes.all_products_collection_url }}" class="btn">
-          {{ 'general.continue_shopping' | t }}
+          Продължи пазаруването
         </a>
       </div>
 

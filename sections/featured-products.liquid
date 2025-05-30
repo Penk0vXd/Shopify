@@ -218,7 +218,7 @@
 
 <section class="featured-products-section">
   <div class="featured-container">
-    <h2 class="section-title">{{ section.settings.heading | default: 'homepage.featured_products' | t }}</h2>
+    <h2 class="section-title">{{ section.settings.heading | default: 'Препоръчани продукти' }}</h2>
     {%- if section.settings.subheading != blank -%}
       <p class="section-subtitle">{{ section.settings.subheading }}</p>
     {%- endif -%}
@@ -239,13 +239,13 @@
                        loading="lazy">
                 {%- else -%}
                   <div class="product-card__image" style="background-color: var(--color-surface); display: flex; align-items: center; justify-content: center; color: var(--color-text-light);">
-                    {{ 'products.product.no_image' | t }}
+                    Няма изображение
                   </div>
                 {%- endif -%}
                 
                 {%- if product.compare_at_price > product.price -%}
                   <div class="product-card__badge">
-                    {{ 'products.product.sale' | t }}
+                    Промоция
                   </div>
                 {%- endif -%}
               </div>
@@ -277,9 +277,9 @@
                         class="product-card__button"
                         {% unless product.available %}disabled{% endunless %}>
                   {%- if product.available -%}
-                    {{ 'products.product.add_to_cart' | t }}
+                    Добави в количката
                   {%- else -%}
-                    {{ 'products.product.sold_out' | t }}
+                    Изчерпано
                   {%- endif -%}
                 </button>
               </form>
@@ -290,12 +290,12 @@
       
       {%- if section.settings.show_view_all and collection.products.size > products_to_show -%}
         <a href="{{ collection.url }}" class="view-all-button">
-          {{ 'collections.general.view_all' | t }}
+          Виж всички продукти
         </a>
       {%- endif -%}
     {%- else -%}
       <div style="text-align: center; padding: 40px; color: var(--color-text-light);">
-        {{ 'collections.general.no_matches' | t }}
+        Няма налични продукти в момента.
       </div>
     {%- endif -%}
   </div>

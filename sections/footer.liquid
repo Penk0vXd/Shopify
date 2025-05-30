@@ -197,22 +197,22 @@
                 {%- endif -%}
                 <div class="footer__contact">
                   {%- if block.settings.address != blank -%}
-                    <strong>{{ 'footer.address' | t }}:</strong>
+                    <strong>Адрес:</strong>
                     {{ block.settings.address }}
                   {%- endif -%}
                   
                   {%- if block.settings.phone != blank -%}
-                    <strong>{{ 'footer.phone' | t }}:</strong>
+                    <strong>Телефон:</strong>
                     <a href="tel:{{ block.settings.phone }}" style="color: inherit;">{{ block.settings.phone }}</a>
                   {%- endif -%}
                   
                   {%- if block.settings.email != blank -%}
-                    <strong>{{ 'footer.email' | t }}:</strong>
+                    <strong>Имейл:</strong>
                     <a href="mailto:{{ block.settings.email }}" style="color: inherit;">{{ block.settings.email }}</a>
                   {%- endif -%}
                   
                   {%- if block.settings.hours != blank -%}
-                    <strong>{{ 'footer.hours' | t }}:</strong>
+                    <strong>Работно време:</strong>
                     {{ block.settings.hours }}
                   {%- endif -%}
                 </div>
@@ -245,32 +245,32 @@
         {%- if section.blocks.size == 0 -%}
           <div class="footer__column">
             <h3>{{ shop.name }}</h3>
-            <div class="footer__contact">
-              {{ 'footer.company_description' | t }}
+            <div class="footer__description">
+              Вашият надежден партньор за авточасти. Над 15 години опит в автомобилната индустрия.
             </div>
           </div>
           
           <div class="footer__column">
-            <h3>{{ 'footer.quick_links' | t }}</h3>
+            <h3>Бързи връзки</h3>
             <ul class="footer__links">
-              <li><a href="/collections/all">{{ 'footer.all_products' | t }}</a></li>
-              <li><a href="/pages/about">{{ 'footer.about_us' | t }}</a></li>
-              <li><a href="/pages/contact">{{ 'footer.contact' | t }}</a></li>
-              <li><a href="/pages/shipping">{{ 'footer.shipping' | t }}</a></li>
+              <li><a href="/collections/all">Всички продукти</a></li>
+              <li><a href="/pages/about">За нас</a></li>
+              <li><a href="/pages/contact">Контакти</a></li>
+              <li><a href="/pages/shipping">Доставка</a></li>
             </ul>
           </div>
           
           <div class="footer__column">
-            <h3>{{ 'footer.contact_info' | t }}</h3>
+            <h3>Контакти</h3>
             <div class="footer__contact">
-              <strong>{{ 'footer.phone' | t }}:</strong>
+              <strong>Телефон:</strong>
               +359 888 123 456
               
-              <strong>{{ 'footer.email' | t }}:</strong>
+              <strong>Имейл:</strong>
               info@autoparts.bg
               
-              <strong>{{ 'footer.hours' | t }}:</strong>
-              {{ 'footer.business_hours' | t }}
+              <strong>Работно време:</strong>
+              Пон-Пет: 9:00-18:00
             </div>
           </div>
         {%- endif -%}
@@ -288,7 +288,7 @@
         
         {%- if section.settings.show_payment_methods -%}
           <div class="footer__payment">
-            <span class="footer__payment-text">{{ 'footer.payment_methods' | t }}:</span>
+            <span class="footer__payment-text">Приемаме:</span>
             <div class="payment-icons">
               <div class="payment-icon">VISA</div>
               <div class="payment-icon">MC</div>

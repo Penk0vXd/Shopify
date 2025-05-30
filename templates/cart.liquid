@@ -54,22 +54,22 @@
 
 <div class="cart-page">
   <div class="cart-container">
-    <h1 class="cart-title">{{ 'cart.general.title' | t }}</h1>
+    <h1 class="cart-title">Количка</h1>
     
     {%- if cart.items.size > 0 -%}
       <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
         <!-- Cart items would go here -->
-        <p>{{ 'cart.general.empty' | t }}</p>
+        <p>Вашата количка е празна</p>
         <a href="{{ routes.all_products_collection_url }}" class="btn">
-          {{ 'general.continue_shopping' | t }}
+          Продължи пазаруването
         </a>
       </form>
     {%- else -%}
       <div class="cart-empty">
-        <h2>{{ 'cart.general.empty' | t }}</h2>
-        <p>{{ 'cart.general.continue_shopping' | t }}</p>
+        <h2>Вашата количка е празна</h2>
+        <p>Продължи пазаруването</p>
         <a href="{{ routes.all_products_collection_url }}" class="btn">
-          {{ 'general.continue_shopping' | t }}
+          Продължи пазаруването
         </a>
       </div>
     {%- endif -%}

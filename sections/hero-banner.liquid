@@ -123,28 +123,29 @@
 
 <section class="hero-section">
   <div class="hero-content">
-    <h1 class="hero-title">{{ section.settings.title | default: 'homepage.hero.title' | t }}</h1>
-    <p class="hero-subtitle">{{ section.settings.subtitle | default: 'homepage.hero.subtitle' | t }}</p>
+
+    <h1 class="hero-title">{{ section.settings.title | default: 'Оригинални авточасти за вашия автомобил' }}</h1>
+    <p class="hero-subtitle">{{ section.settings.subtitle | default: 'Над 50,000 части на склад. Доставка до 24 часа.' }}</p>
     
     {% if section.settings.show_ymm_search %}
     <div class="ymm-selector hero-ymm">
       <select id="year-select" class="ymm-select">
-        <option value="">{{ 'search.select_year' | t }}</option>
+        <option value="">Изберете година</option>
         {% for year in (1990..2024) reversed %}
           <option value="{{ year }}">{{ year }}</option>
         {% endfor %}
       </select>
       
       <select id="make-select" class="ymm-select" disabled>
-        <option value="">{{ 'search.select_make' | t }}</option>
+        <option value="">Изберете марка</option>
       </select>
       
       <select id="model-select" class="ymm-select" disabled>
-        <option value="">{{ 'search.select_model' | t }}</option>
+        <option value="">Изберете модел</option>
       </select>
       
-      <button class="ymm-search-btn" disabled>
-        {{ 'search.find_parts' | t }}
+      <button id="search-btn" class="ymm-btn" disabled>
+        Намери части
       </button>
     </div>
     {% endif %}
@@ -181,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
     yearSelect.addEventListener('change', function() {
       if (this.value) {
         makeSelect.disabled = false;
-        makeSelect.innerHTML = '<option value="">{{ "search.select_make" | t }}</option>';
+        makeSelect.innerHTML = '<option value="">Изберете марка</option>';
         Object.keys(ymm_data).forEach(make => {
           makeSelect.innerHTML += `<option value="${make}">${make.charAt(0).toUpperCase() + make.slice(1)}</option>`;
         });
@@ -195,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
     makeSelect.addEventListener('change', function() {
       if (this.value) {
         modelSelect.disabled = false;
-        modelSelect.innerHTML = '<option value="">{{ "search.select_model" | t }}</option>';
+        modelSelect.innerHTML = '<option value="">Изберете модел</option>';
         ymm_data[this.value].forEach(model => {
           modelSelect.innerHTML += `<option value="${model.toLowerCase().replace(/\s+/g, '-')}">${model}</option>`;
         });

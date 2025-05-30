@@ -169,7 +169,7 @@
                class="product-image">
         {%- else -%}
           <div class="product-image" style="background-color: var(--color-surface); display: flex; align-items: center; justify-content: center; height: 400px; color: var(--color-text-light);">
-            {{ 'products.product.no_image' | t }}
+            Няма изображение
           </div>
         {%- endif -%}
       </div>
@@ -205,7 +205,7 @@
                             {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
                             {% unless variant.available %}disabled{% endunless %}>
                       {{ variant.title }}
-                      {%- unless variant.available %} - {{ 'products.product.sold_out' | t }}{% endunless %}
+                      {%- unless variant.available %} - Изчерпано{% endunless %}
                     </option>
                   {%- endfor -%}
                 </select>
@@ -221,9 +221,9 @@
                     class="btn btn-primary"
                     {% unless product.available %}disabled{% endunless %}>
               {%- if product.available -%}
-                {{ 'products.product.add_to_cart' | t }}
+                Добави в количката
               {%- else -%}
-                {{ 'products.product.sold_out' | t }}
+                Изчерпано
               {%- endif -%}
             </button>
           </div>
@@ -231,19 +231,19 @@
 
         <div class="product-meta">
           {%- if product.sku != blank -%}
-            <p><strong>{{ 'products.product.sku' | t }}:</strong> {{ product.sku }}</p>
+            <p><strong>Каталожен номер:</strong> {{ product.sku }}</p>
           {%- endif -%}
           
           {%- if product.vendor != blank -%}
-            <p><strong>{{ 'products.product.vendor' | t }}:</strong> {{ product.vendor }}</p>
+            <p><strong>Производител:</strong> {{ product.vendor }}</p>
           {%- endif -%}
           
           {%- if product.type != blank -%}
-            <p><strong>{{ 'products.product.product_type' | t }}:</strong> {{ product.type }}</p>
+            <p><strong>Тип продукт:</strong> {{ product.type }}</p>
           {%- endif -%}
           
           {%- unless product.tags == empty -%}
-            <p><strong>{{ 'products.product.tags' | t }}:</strong> {{ product.tags | join: ', ' }}</p>
+            <p><strong>Етикети:</strong> {{ product.tags | join: ', ' }}</p>
           {%- endunless -%}
         </div>
       </div>
