@@ -123,8 +123,8 @@
 
 <section class="hero-section">
   <div class="hero-content">
-    <h1 class="hero-title">{{ 'homepage.hero.title' | t | default: section.settings.title }}</h1>
-    <p class="hero-subtitle">{{ 'homepage.hero.subtitle' | t | default: section.settings.subtitle }}</p>
+    <h1 class="hero-title">{{ section.settings.title | default: 'homepage.hero.title' | t }}</h1>
+    <p class="hero-subtitle">{{ section.settings.subtitle | default: 'homepage.hero.subtitle' | t }}</p>
     
     {% if section.settings.show_ymm_search %}
     <div class="ymm-selector hero-ymm">
@@ -232,13 +232,13 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": ""
+      "default": "Оригинални авточасти за вашия автомобил"
     },
     {
       "type": "text",
       "id": "subtitle",
       "label": "Subheading",
-      "default": ""
+      "default": "Над 50,000 части на склад. Доставка до 24 часа."
     },
     {
       "type": "checkbox",
