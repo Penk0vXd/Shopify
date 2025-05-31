@@ -294,7 +294,7 @@ class CarPartsSearch {
     this.setLoadingState(true);
     this.showStatus('Проверка на VIN номера...', 'info');
     
-    // Simulate VIN lookup (in real implementation, this would call a VIN decoding API)
+    // Simulate VIN lookup (now using comprehensive VIN decoder)
     setTimeout(() => {
       this.performVinLookup(vin);
     }, 1500);
@@ -325,30 +325,89 @@ class CarPartsSearch {
     }, 1000);
   }
 
-  // Perform VIN lookup (placeholder for actual implementation)
+  // Perform VIN lookup (now using comprehensive VIN decoder)
   performVinLookup(vin) {
     this.setLoadingState(false);
     
-    // Simulate VIN decoding result
-    const mockResult = {
-      year: '2018',
-      brand: 'BMW',
-      model: '320d',
-      engine: '2.0 Diesel'
-    };
+    // Initialize VIN decoder if not already done
+    if (!this.vinDecoder) {
+      this.vinDecoder = new VINDecoder();
+    }
     
-    this.showStatus(`Открит автомобил: ${mockResult.year} ${mockResult.brand} ${mockResult.model}`, 'success');
-    
-    // In a real implementation, you would either:
-    // 1. Redirect to search results for this specific vehicle
-    // 2. Auto-populate the manual form and switch to it
-    // 3. Show a confirmation dialog
-    
-    setTimeout(() => {
-      const searchQuery = `year:${mockResult.year} brand:${mockResult.brand} model:${mockResult.model}`;
-      const searchUrl = `/search?q=${encodeURIComponent(searchQuery)}&type=product&vin=${vin}`;
-      window.location.href = searchUrl;
-    }, 2000);
+    try {
+      // Decode the VIN using our comprehensive decoder
+      const decodedVIN = this.vinDecoder.decode(vin);
+      
+      if (!decodedVIN.isValid) {
+        this.showStatus(`VIN грешка: ${decodedVIN.error}`, 'error');
+        return;
+      }
+      
+      // Build result message
+      const vehicle = decodedVIN.vehicle;
+      const specs = decodedVIN.specifications;
+      
+      let resultMessage = `Открит автомобил: ${vehicle.year || 'Неизвестна'} ${vehicle.brand || 'Неизвестна марка'}`;
+      
+      if (vehicle.series || vehicle.model) {
+        resultMessage += ` ${vehicle.series || vehicle.model}`;
+      }
+      
+      if (specs.fuelType) {
+        const fuelTypes = {
+          'Gasoline': 'Бензин',
+          'Diesel': 'Дизел', 
+          'Hybrid': 'Хибрид',
+          'Electric': 'Електрически'
+        };
+        resultMessage += ` (${fuelTypes[specs.fuelType] || specs.fuelType})`;
+      }
+      
+      // Show confidence score
+      if (decodedVIN.confidence < 70) {
+        resultMessage += ` - Ниска точност: ${decodedVIN.confidence}%`;
+      }
+      
+      this.showStatus(resultMessage, 'success');
+      
+      // Store decoded VIN data for potential use
+      this.lastDecodedVIN = decodedVIN;
+      
+      // Build search query from decoded information
+      let searchTerms = [];
+      
+      if (vehicle.year) searchTerms.push(`year:${vehicle.year}`);
+      if (vehicle.brand) searchTerms.push(`brand:${vehicle.brand}`);
+      if (vehicle.series) searchTerms.push(`model:${vehicle.series}`);
+      else if (vehicle.model) searchTerms.push(`model:${vehicle.model}`);
+      
+      const searchQuery = searchTerms.join(' ');
+      
+      // Redirect to search results with comprehensive VIN data
+      setTimeout(() => {
+        const searchUrl = `/search?q=${encodeURIComponent(searchQuery)}&type=product&vin=${vin}`;
+        
+        // Add additional URL parameters for detailed filtering
+        const urlParams = new URLSearchParams();
+        urlParams.set('q', searchQuery);
+        urlParams.set('type', 'product');
+        urlParams.set('vin', vin);
+        
+        if (vehicle.year) urlParams.set('year', vehicle.year);
+        if (vehicle.brand) urlParams.set('brand', vehicle.brand);
+        if (vehicle.series || vehicle.model) {
+          urlParams.set('model', vehicle.series || vehicle.model);
+        }
+        if (specs.fuelType) urlParams.set('fuel', specs.fuelType);
+        if (vehicle.plant) urlParams.set('plant', vehicle.plant);
+        
+        window.location.href = `/search?${urlParams.toString()}`;
+      }, 2000);
+      
+    } catch (error) {
+      console.error('VIN Decoding Error:', error);
+      this.showStatus('Грешка при декодиране на VIN номера', 'error');
+    }
   }
 
   // Set loading state for buttons

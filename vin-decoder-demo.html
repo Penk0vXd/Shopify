@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIN Decoder Demo - Complete Automotive System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #d32f2f;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .demo-section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .demo-section h2 {
+            color: #d32f2f;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .vin-input-section {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: end;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .vin-input {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .vin-input:focus {
+            border-color: #d32f2f;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+        }
+
+        .vin-input.valid {
+            border-color: #4caf50;
+            background-color: #f8fff8;
+        }
+
+        .vin-input.error {
+            border-color: #f44336;
+            background-color: #fff8f8;
+        }
+
+        .decode-btn {
+            padding: 15px 30px;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .decode-btn:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+
+        .decode-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 5px solid #d32f2f;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .result-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        .result-card h3 {
+            color: #d32f2f;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .result-value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .confidence-bar {
+            background: #f0f0f0;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f44336, #ff9800, #4caf50);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .example-vins {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .example-vin {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #d32f2f;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .example-vin:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+        }
+
+        .example-vin-code {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #d32f2f;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .example-vin-desc {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #4caf50;
+        }
+
+        .status-error {
+            background: #fef0f0;
+            color: #c62828;
+            border: 1px solid #f44336;
+        }
+
+        .status-warning {
+            background: #fff8e1;
+            color: #ef6c00;
+            border: 1px solid #ff9800;
+        }
+
+        .vin-structure {
+            margin-top: 20px;
+        }
+
+        .vin-positions {
+            display: grid;
+            grid-template-columns: repeat(17, 1fr);
+            gap: 2px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .vin-position {
+            background: #f0f0f0;
+            padding: 10px 5px;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .vin-position.wmi { background: #ffecb3; }
+        .vin-position.vds { background: #c8e6c9; }
+        .vin-position.check { background: #ffcdd2; }
+        .vin-position.vis { background: #bbdefb; }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .vin-input-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .vin-positions {
+                grid-template-columns: repeat(8, 1fr);
+                gap: 1px;
+            }
+            
+            .vin-position {
+                padding: 8px 3px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚗 VIN Decoder Pro</h1>
+            <p>Професионална система за декодиране на VIN номера за българския автомобилен пазар</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>VIN Декодер</h2>
+            <div class="vin-input-section">
+                <div class="input-group">
+                    <label for="vin-decoder-input">Въведи VIN номер (17 символа):</label>
+                    <input type="text" 
+                           id="vin-decoder-input" 
+                           class="vin-input" 
+                           placeholder="WBA3A5C56DF586123"
+                           maxlength="17"
+                           autocomplete="off">
+                </div>
+                <button id="decode-btn" class="decode-btn">Декодирай VIN</button>
+            </div>
+
+            <div id="status-area"></div>
+            <div id="results-area" class="results-section" style="display: none;"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Примерни VIN номера</h2>
+            <p>Щракни върху някой от примерите за да тестваш декодера:</p>
+            <div class="example-vins">
+                <div class="example-vin" data-vin="WBA3A5C56DF586123">
+                    <div class="example-vin-code">WBA3A5C56DF586123</div>
+                    <div class="example-vin-desc">BMW 3 Series - Германия (2013)</div>
+                </div>
+                <div class="example-vin" data-vin="WDD2050461A123456">
+                    <div class="example-vin-code">WDD2050461A123456</div>
+                    <div class="example-vin-desc">Mercedes-Benz C-Class - Германия (2010)</div>
+                </div>
+                <div class="example-vin" data-vin="WAUDF68E12A123456">
+                    <div class="example-vin-code">WAUDF68E12A123456</div>
+                    <div class="example-vin-desc">Audi A6 - Германия (2002)</div>
+                </div>
+                <div class="example-vin" data-vin="JTD123456KA123456">
+                    <div class="example-vin-code">JTD123456KA123456</div>
+                    <div class="example-vin-desc">Toyota Corolla - Япония (2019)</div>
+                </div>
+                <div class="example-vin" data-vin="1HGCM82633A123456">
+                    <div class="example-vin-code">1HGCM82633A123456</div>
+                    <div class="example-vin-desc">Honda Accord - САЩ (2003)</div>
+                </div>
+                <div class="example-vin" data-vin="VF1234567G1234567">
+                    <div class="example-vin-code">VF1234567G1234567</div>
+                    <div class="example-vin-desc">Renault - Франция (2016)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>VIN Структура</h2>
+            <p>VIN номерът се състои от 17 символа, разделени в 3 основни секции:</p>
+            
+            <div class="vin-structure">
+                <div class="vin-positions">
+                    <div class="vin-position wmi">1</div>
+                    <div class="vin-position wmi">2</div>
+                    <div class="vin-position wmi">3</div>
+                    <div class="vin-position vds">4</div>
+                    <div class="vin-position vds">5</div>
+                    <div class="vin-position vds">6</div>
+                    <div class="vin-position vds">7</div>
+                    <div class="vin-position vds">8</div>
+                    <div class="vin-position check">9</div>
+                    <div class="vin-position vis">10</div>
+                    <div class="vin-position vis">11</div>
+                    <div class="vin-position vis">12</div>
+                    <div class="vin-position vis">13</div>
+                    <div class="vin-position vis">14</div>
+                    <div class="vin-position vis">15</div>
+                    <div class="vin-position vis">16</div>
+                    <div class="vin-position vis">17</div>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color wmi"></div>
+                        <span>WMI (1-3): Производител</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color vds"></div>
+                        <span>VDS (4-8): Описание</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color check"></div>
+                        <span>Check (9): Контрола</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color vis"></div>
+                        <span>VIS (10-17): Информация</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Поддържани производители</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <h3>🇩🇪 Германски марки</h3>
+                    <div class="result-item">
+                        <span class="result-label">BMW</span>
+                        <span class="result-value">WBA, WBS, WBX</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Mercedes-Benz</span>
+                        <span class="result-value">WDD, WDC, WDB</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Audi</span>
+                        <span class="result-value">WAU, WA1, TRU</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Volkswagen</span>
+                        <span class="result-value">WVW, WV1, WV2</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Porsche</span>
+                        <span class="result-value">WP0, WP1</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3>🇯🇵 Японски марки</h3>
+                    <div class="result-item">
+                        <span class="result-label">Toyota</span>
+                        <span class="result-value">JTD, JTE, JTF</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Honda</span>
+                        <span class="result-value">JHM, JH4</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Nissan</span>
+                        <span class="result-value">JN1, JN6, JN8</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Mazda</span>
+                        <span class="result-value">JM1, JM7</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Subaru</span>
+                        <span class="result-value">JF1, JF2</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3>🇫🇷 Френски марки</h3>
+                    <div class="result-item">
+                        <span class="result-label">Renault</span>
+                        <span class="result-value">VF1, VF3, VF6</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Peugeot</span>
+                        <span class="result-value">VF3, VF2, VF5</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Citroën</span>
+                        <span class="result-value">VF7, VF8, VF9</span>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <h3>🇺🇸 Американски марки</h3>
+                    <div class="result-item">
+                        <span class="result-label">Ford</span>
+                        <span class="result-value">1FA, 1FB, 1FC</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Chevrolet</span>
+                        <span class="result-value">1G1, 1G4, 1G6</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Honda USA</span>
+                        <span class="result-value">1HG, 2HG</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include VIN Decoder -->
+    <script src="assets/vin-decoder.js"></script>
+    
+    <script>
+        // Demo Page JavaScript
+        class VINDecoderDemo {
+            constructor() {
+                this.vinDecoder = new VINDecoder();
+                this.vinInput = document.getElementById('vin-decoder-input');
+                this.decodeBtn = document.getElementById('decode-btn');
+                this.statusArea = document.getElementById('status-area');
+                this.resultsArea = document.getElementById('results-area');
+                
+                this.bindEvents();
+            }
+            
+            bindEvents() {
+                // VIN input validation
+                this.vinInput.addEventListener('input', (e) => this.validateInput(e.target.value));
+                
+                // Decode button
+                this.decodeBtn.addEventListener('click', () => this.performDecode());
+                
+                // Enter key support
+                this.vinInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.performDecode();
+                    }
+                });
+                
+                // Example VIN clicks
+                document.querySelectorAll('.example-vin').forEach(example => {
+                    example.addEventListener('click', (e) => {
+                        const vin = e.currentTarget.dataset.vin;
+                        this.vinInput.value = vin;
+                        this.validateInput(vin);
+                        this.performDecode();
+                    });
+                });
+            }
+            
+            validateInput(vin) {
+                const cleanVin = vin.toUpperCase().replace(/[^A-Z0-9]/g, '');
+                
+                if (this.vinInput.value !== cleanVin) {
+                    this.vinInput.value = cleanVin;
+                }
+                
+                this.vinInput.classList.remove('valid', 'error');
+                
+                if (cleanVin.length === 0) {
+                    this.decodeBtn.disabled = true;
+                    return;
+                }
+                
+                if (cleanVin.length === 17) {
+                    const validation = this.vinDecoder.validateVIN(cleanVin);
+                    if (validation.isValid) {
+                        this.vinInput.classList.add('valid');
+                        this.decodeBtn.disabled = false;
+                    } else {
+                        this.vinInput.classList.add('error');
+                        this.decodeBtn.disabled = true;
+                        this.showStatus(validation.error, 'error');
+                    }
+                } else {
+                    this.vinInput.classList.add('error');
+                    this.decodeBtn.disabled = true;
+                    this.showStatus(`VIN трябва да е 17 символа (въведени: ${cleanVin.length})`, 'warning');
+                }
+            }
+            
+            performDecode() {
+                const vin = this.vinInput.value;
+                
+                if (!vin || vin.length !== 17) {
+                    this.showStatus('Моля въведете валиден 17-символен VIN номер', 'error');
+                    return;
+                }
+                
+                this.showStatus('Декодиране на VIN номер...', 'info');
+                this.decodeBtn.disabled = true;
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    try {
+                        const result = this.vinDecoder.decode(vin);
+                        this.displayResults(result);
+                    } catch (error) {
+                        this.showStatus(`Грешка при декодиране: ${error.message}`, 'error');
+                    }
+                    this.decodeBtn.disabled = false;
+                }, 500);
+            }
+            
+            displayResults(result) {
+                if (!result.isValid) {
+                    this.showStatus(`VIN грешка: ${result.error}`, 'error');
+                    this.resultsArea.style.display = 'none';
+                    return;
+                }
+                
+                this.showStatus('VIN декодиран успешно!', 'success');
+                
+                const bulgarian = this.vinDecoder.getBulgarianTranslations();
+                
+                this.resultsArea.innerHTML = `
+                    <h3>🔍 Резултати от декодирането</h3>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" style="width: ${result.confidence}%">
+                            ${result.confidence}% точност
+                        </div>
+                    </div>
+                    
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <h3>🏭 Производител (WMI)</h3>
+                            <div class="result-item">
+                                <span class="result-label">Код:</span>
+                                <span class="result-value">${result.wmi.code}</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Марка:</span>
+                                <span class="result-value">${result.wmi.manufacturer}</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Държава:</span>
+                                <span class="result-value">${result.wmi.country}</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Регион:</span>
+                                <span class="result-value">${result.wmi.region}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h3>📋 Описание на МПС (VDS)</h3>
+                            <div class="result-item">
+                                <span class="result-label">Сурови данни:</span>
+                                <span class="result-value">${result.vds.raw}</span>
+                            </div>
+                            ${result.vds.decoded ? `
+                                ${result.vds.series ? `<div class="result-item">
+                                    <span class="result-label">Серия:</span>
+                                    <span class="result-value">${result.vds.series}</span>
+                                </div>` : ''}
+                                ${result.vds.engine ? `<div class="result-item">
+                                    <span class="result-label">Двигател:</span>
+                                    <span class="result-value">${bulgarian[result.vds.engine] || result.vds.engine}</span>
+                                </div>` : ''}
+                                ${result.vds.transmission ? `<div class="result-item">
+                                    <span class="result-label">Трансмисия:</span>
+                                    <span class="result-value">${bulgarian[result.vds.transmission] || result.vds.transmission}</span>
+                                </div>` : ''}
+                                ${result.vds.bodyStyle ? `<div class="result-item">
+                                    <span class="result-label">Каросерия:</span>
+                                    <span class="result-value">${bulgarian[result.vds.bodyStyle] || result.vds.bodyStyle}</span>
+                                </div>` : ''}
+                            ` : `
+                                <div class="result-item">
+                                    <span class="result-label">Статус:</span>
+                                    <span class="result-value">Неразшифровано (${result.vds.reason || 'Неизвестна структура'})</span>
+                                </div>
+                            `}
+                        </div>
+                        
+                        <div class="result-card">
+                            <h3>📅 Информация за МПС (VIS)</h3>
+                            <div class="result-item">
+                                <span class="result-label">Година:</span>
+                                <span class="result-value">${result.vis.modelYear.year || 'Неизвестна'} (${result.vis.modelYear.code})</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Завод:</span>
+                                <span class="result-value">${result.vis.plant.name}</span>
+                            </div>
+                            ${result.vis.plant.location !== 'Unknown' ? `<div class="result-item">
+                                <span class="result-label">Локация:</span>
+                                <span class="result-value">${result.vis.plant.location}</span>
+                            </div>` : ''}
+                            <div class="result-item">
+                                <span class="result-label">Сериен номер:</span>
+                                <span class="result-value">${result.vis.serialNumber}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h3>🚗 Информация за автомобила</h3>
+                            <div class="result-item">
+                                <span class="result-label">Марка:</span>
+                                <span class="result-value">${result.vehicle.brand}</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Година:</span>
+                                <span class="result-value">${result.vehicle.year || 'Неизвестна'}</span>
+                            </div>
+                            ${result.vehicle.series ? `<div class="result-item">
+                                <span class="result-label">Серия/Модел:</span>
+                                <span class="result-value">${result.vehicle.series}</span>
+                            </div>` : ''}
+                            ${result.vehicle.engine ? `<div class="result-item">
+                                <span class="result-label">Двигател:</span>
+                                <span class="result-value">${result.vehicle.engine}</span>
+                            </div>` : ''}
+                            <div class="result-item">
+                                <span class="result-label">Произведен в:</span>
+                                <span class="result-value">${result.vehicle.country}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #f0f8ff; border-radius: 8px; border-left: 4px solid #2196f3;">
+                        <strong>🔍 Форматиран VIN:</strong> <code style="font-family: monospace; font-size: 1.1rem; color: #d32f2f;">${this.vinDecoder.formatVIN(result.vin)}</code>
+                    </div>
+                `;
+                
+                this.resultsArea.style.display = 'block';
+            }
+            
+            showStatus(message, type) {
+                this.statusArea.innerHTML = `<div class="status-message status-${type}">${message}</div>`;
+            }
+        }
+        
+        // Initialize demo when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new VINDecoderDemo();
+        });
+    </script>
+</body>
+</html> 
