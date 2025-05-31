@@ -1,9 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "locale": "bg",
     "force_bulgarian": true,
     "color_primary": "#D32F2F",
-    "color_primary_dark": "#B71C1C", 
+    "color_primary_dark": "#B71C1C",
     "color_background": "#FFFFFF",
     "color_surface": "#F5F5F5",
     "color_text": "#212121",
@@ -19,6 +28,128 @@
     "delivery_time": "Доставка до 24ч",
     "warranty_text": "2 години гаранция",
     "sticky_header": true,
-    "logo_height": "60px"
+    "logo_height": "60px",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {}
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu",
+          "enable_search": true
+        }
+      },
+      "hero-banner": {
+        "type": "hero-banner",
+        "settings": {
+          "title": "Оригинални авточасти за вашия автомобил",
+          "subtitle": "Над 50,000 части на склад. Доставка до 24 часа.",
+          "show_ymm_search": false
+        }
+      },
+      "car-parts-search": {
+        "type": "car-parts-search",
+        "settings": {
+          "title": "Намери части за своя автомобил",
+          "subtitle": "Избери модел или въведи VIN номер за бърза и точна търсачка",
+          "section_padding_top": 36,
+          "section_padding_bottom": 36
+        }
+      },
+      "trust-badges": {
+        "type": "trust-badges",
+        "settings": {}
+      },
+      "car-brands": {
+        "type": "car-brands",
+        "settings": {
+          "heading": "Разгледайте по марка"
+        }
+      },
+      "featured-categories": {
+        "type": "featured-categories",
+        "settings": {
+          "heading": "Популярни категории"
+        }
+      },
+      "featured-products": {
+        "type": "featured-products",
+        "settings": {
+          "heading": "Препоръчани продукти",
+          "subheading": "Най-търсените части от нашите клиенти",
+          "collection": "",
+          "products_to_show": 8,
+          "show_view_all": true
+        }
+      },
+      "why-choose-us": {
+        "type": "why-choose-us",
+        "settings": {
+          "heading": "Защо да изберете нас",
+          "subheading": "Вашият надежден партньор за качествени авточасти",
+          "show_stats": true,
+          "stat_years": "15+",
+          "stat_parts": "50,000+",
+          "stat_customers": "10,000+",
+          "stat_brands": "200+"
+        }
+      },
+      "newsletter": {
+        "type": "newsletter",
+        "settings": {
+          "heading": "Абонирайте се за нашия бюлетин",
+          "subheading": "Получавайте информация за нови продукти, промоции и автомобилни съвети директно в имейла си.",
+          "button_text": "Абонирай се",
+          "show_benefits": true,
+          "benefit_1": "Ексклузивни промоции",
+          "benefit_2": "Нови продукти първи",
+          "benefit_3": "Полезни съвети",
+          "show_disclaimer": true,
+          "disclaimer": "Можете да се отпишете по всяко време. Не споделяме вашата информация с трети страни."
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "text",
+            "settings": {
+              "heading": "Auto Parts BG",
+              "subtext": "<p>Вашият надежден партньор за авточасти. Над 15 години опит в автомобилната индустрия.</p>"
+            }
+          },
+          "footer-1": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Бързи връзки",
+              "menu": "footer"
+            }
+          },
+          "footer-2": {
+            "type": "contact",
+            "settings": {
+              "heading": "Контакти",
+              "address": "",
+              "phone": "+359 888 123 456",
+              "email": "info@autoparts.bg",
+              "hours": "Пон-Пет: 9:00-18:00",
+              "show_social": true
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "footer-1",
+          "footer-2"
+        ],
+        "settings": {
+          "copyright": "© 2024 Auto Parts BG. All rights reserved.",
+          "show_payment_methods": true
+        }
+      }
+    },
+    "content_for_index": []
   }
-} 
+}
