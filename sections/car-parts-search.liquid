@@ -1,0 +1,170 @@
+{{ 'car-parts-search.css' | asset_url | stylesheet_tag }}
+
+<section class="car-parts-search" id="car-parts-search-{{ section.id }}">
+  <div class="page-width">
+    <div class="car-parts-search__wrapper">
+      <div class="car-parts-search__header">
+        <h2 class="car-parts-search__title">{{ section.settings.title | default: "Намери части за своя автомобил" }}</h2>
+        <p class="car-parts-search__subtitle">{{ section.settings.subtitle | default: "Избери модел или въведи VIN номер за бърза и точна търсачка" }}</p>
+      </div>
+
+      <!-- Manual Search Form (Default) -->
+      <div class="car-parts-search__form-container" id="manual-search-form">
+        <form class="car-parts-search__form" id="car-search-form" action="{{ routes.search_url }}" method="get">
+          <input type="hidden" name="type" value="product">
+          <input type="hidden" name="options[unavailable_products]" value="last">
+          
+          <div class="car-parts-search__fields">
+            <!-- Year Dropdown -->
+            <div class="car-parts-search__field">
+              <label class="car-parts-search__label" for="car-year">
+                <span class="car-parts-search__icon">🗓️</span>
+                Година
+              </label>
+              <select class="car-parts-search__select" id="car-year" name="year" required>
+                <option value="">Избери година</option>
+                <!-- Years will be populated by JavaScript -->
+                {% comment %} Dynamic population: for year in (1990..current_year) {% endcomment %}
+                {% assign current_year = 'now' | date: '%Y' | plus: 0 %}
+                {% for i in (1990..current_year) %}
+                  {% assign year = current_year | minus: forloop.index0 %}
+                  <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Brand Dropdown -->
+            <div class="car-parts-search__field">
+              <label class="car-parts-search__label" for="car-brand">
+                <span class="car-parts-search__icon">🚗</span>
+                Марка
+              </label>
+              <select class="car-parts-search__select" id="car-brand" name="brand" required disabled>
+                <option value="">Първо избери година</option>
+                <!-- Brands will be populated by JavaScript based on year selection -->
+                {% comment %} Dynamic brands: BMW, Mercedes, Audi, Volkswagen, Toyota, Honda, etc. {% endcomment %}
+              </select>
+            </div>
+
+            <!-- Model Dropdown -->
+            <div class="car-parts-search__field">
+              <label class="car-parts-search__label" for="car-model">
+                <span class="car-parts-search__icon">⚙️</span>
+                Модел
+              </label>
+              <select class="car-parts-search__select" id="car-model" name="model" required disabled>
+                <option value="">Първо избери марка</option>
+                <!-- Models will be populated by JavaScript based on brand selection -->
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="car-parts-search__submit-btn" id="search-parts-btn">
+            <span class="car-parts-search__btn-icon">🔍</span>
+            Търси части
+          </button>
+        </form>
+
+        <!-- Toggle to VIN Search -->
+        <div class="car-parts-search__toggle">
+          <button type="button" class="car-parts-search__toggle-btn" id="toggle-to-vin">
+            Знаеш своя VIN? <span class="toggle-arrow">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- VIN Search Form (Hidden by default) -->
+      <div class="car-parts-search__form-container car-parts-search__form-container--hidden" id="vin-search-form">
+        <form class="car-parts-search__form" id="vin-search-form-element">
+          <div class="car-parts-search__vin-field">
+            <label class="car-parts-search__label" for="vin-input">
+              <span class="car-parts-search__icon">🔢</span>
+              VIN номер
+            </label>
+            <input 
+              type="text" 
+              class="car-parts-search__vin-input" 
+              id="vin-input" 
+              name="vin" 
+              placeholder="Въведи VIN номер (напр. WBA3A5C56DF586123)"
+              maxlength="17"
+              autocomplete="off"
+            >
+            <div class="car-parts-search__vin-info">
+              <small>VIN номерът трябва да е точно 17 символа</small>
+            </div>
+          </div>
+
+          <button type="submit" class="car-parts-search__submit-btn" id="check-vin-btn">
+            <span class="car-parts-search__btn-icon">✓</span>
+            Провери VIN
+          </button>
+        </form>
+
+        <!-- Toggle back to Manual Search -->
+        <div class="car-parts-search__toggle">
+          <button type="button" class="car-parts-search__toggle-btn" id="toggle-to-manual">
+            <span class="toggle-arrow">←</span> Обратно към ръчно търсене
+          </button>
+        </div>
+      </div>
+
+      <!-- Results/Status Area -->
+      <div class="car-parts-search__status" id="search-status"></div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'car-parts-search.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Търсачка за части",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Заглавие",
+      "default": "Намери части за своя автомобил"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Подзаглавие",
+      "default": "Избери модел или въведи VIN номер за бърза и точна търсачка"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Отстояние отгоре",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Отстояние отдолу",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Търсачка за части"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+  #car-parts-search-{{ section.id }} {
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+  }
+</style> 

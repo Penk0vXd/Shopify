@@ -1,0 +1,488 @@
+/* Car Parts Search Component */
+/* Mobile-first responsive design with Bulgarian automotive e-commerce styling */
+
+.car-parts-search {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  padding: calc(var(--spacing-unit) * 6) 0;
+}
+
+.car-parts-search__wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 calc(var(--spacing-unit) * 2);
+}
+
+/* Header Section */
+.car-parts-search__header {
+  text-align: center;
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+.car-parts-search__title {
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  line-height: 1.2;
+}
+
+.car-parts-search__subtitle {
+  font-size: clamp(14px, 3vw, 18px);
+  color: var(--color-text-light);
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Form Container - Card Style */
+.car-parts-search__form-container {
+  background: var(--color-background);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  padding: calc(var(--spacing-unit) * 4);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.car-parts-search__form-container:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+}
+
+.car-parts-search__form-container:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Hidden state for form container */
+.car-parts-search__form-container--hidden {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.car-parts-search__form-container--visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  animation: slideInUp 0.4s ease-out;
+}
+
+/* Form Layout */
+.car-parts-search__form {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 3);
+}
+
+/* Fields Container - Mobile First */
+.car-parts-search__fields {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 3);
+}
+
+/* Individual Field */
+.car-parts-search__field {
+  position: relative;
+}
+
+.car-parts-search__label {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 1);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.car-parts-search__icon {
+  font-size: 16px;
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+
+/* Select Dropdowns */
+.car-parts-search__select {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23757575' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  padding-right: 48px;
+}
+
+.car-parts-search__select:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.1);
+}
+
+.car-parts-search__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+.car-parts-search__select:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+  border-color: #e0e0e0;
+}
+
+.car-parts-search__select option {
+  padding: 12px;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+/* VIN Input Field */
+.car-parts-search__vin-field {
+  position: relative;
+}
+
+.car-parts-search__vin-input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.car-parts-search__vin-input::placeholder {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+  color: #999;
+}
+
+.car-parts-search__vin-input:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.1);
+}
+
+.car-parts-search__vin-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+.car-parts-search__vin-input.error {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.car-parts-search__vin-input.valid {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.car-parts-search__vin-info {
+  margin-top: calc(var(--spacing-unit) * 1);
+}
+
+.car-parts-search__vin-info small {
+  color: var(--color-text-light);
+  font-size: 12px;
+}
+
+/* Submit Buttons */
+.car-parts-search__submit-btn {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 18px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing-unit) * 1);
+  position: relative;
+  overflow: hidden;
+  min-height: 56px;
+}
+
+.car-parts-search__submit-btn:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.car-parts-search__submit-btn:hover:before {
+  left: 100%;
+}
+
+.car-parts-search__submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.3);
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+}
+
+.car-parts-search__submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(211, 47, 47, 0.2);
+}
+
+.car-parts-search__submit-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.car-parts-search__btn-icon {
+  font-size: 18px;
+  display: inline-block;
+}
+
+/* Toggle Buttons */
+.car-parts-search__toggle {
+  margin-top: calc(var(--spacing-unit) * 4);
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: calc(var(--spacing-unit) * 3);
+}
+
+.car-parts-search__toggle-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 1);
+}
+
+.car-parts-search__toggle-btn:hover {
+  background-color: rgba(211, 47, 47, 0.05);
+  color: var(--color-primary-dark);
+}
+
+.toggle-arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.car-parts-search__toggle-btn:hover .toggle-arrow {
+  transform: translateX(2px);
+}
+
+/* Status Area */
+.car-parts-search__status {
+  margin-top: calc(var(--spacing-unit) * 3);
+  padding: calc(var(--spacing-unit) * 2);
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.car-parts-search__status.success {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--color-success);
+  border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+.car-parts-search__status.error {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: var(--color-error);
+  border: 1px solid rgba(244, 67, 54, 0.2);
+}
+
+.car-parts-search__status.warning {
+  background-color: rgba(255, 152, 0, 0.1);
+  color: var(--color-warning);
+  border: 1px solid rgba(255, 152, 0, 0.2);
+}
+
+/* Loading States */
+.car-parts-search__submit-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.car-parts-search__submit-btn.loading .car-parts-search__btn-icon {
+  animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design - Tablet */
+@media (min-width: 576px) {
+  .car-parts-search__wrapper {
+    padding: 0 calc(var(--spacing-unit) * 3);
+  }
+  
+  .car-parts-search__form-container {
+    padding: calc(var(--spacing-unit) * 6);
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 768px) {
+  .car-parts-search__fields {
+    flex-direction: row;
+    align-items: end;
+  }
+  
+  .car-parts-search__field {
+    flex: 1;
+  }
+  
+  .car-parts-search__submit-btn {
+    align-self: flex-start;
+    margin-top: auto;
+    min-width: 180px;
+  }
+  
+  .car-parts-search__form {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+  
+  .car-parts-search__fields {
+    flex: 1;
+    gap: calc(var(--spacing-unit) * 2);
+  }
+}
+
+@media (min-width: 992px) {
+  .car-parts-search__wrapper {
+    padding: 0 calc(var(--spacing-unit) * 4);
+  }
+  
+  .car-parts-search__form-container {
+    padding: calc(var(--spacing-unit) * 8);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .car-parts-search__select,
+  .car-parts-search__vin-input {
+    border-width: 3px;
+  }
+  
+  .car-parts-search__submit-btn {
+    border: 2px solid var(--color-primary-dark);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .car-parts-search__form-container,
+  .car-parts-search__select,
+  .car-parts-search__vin-input,
+  .car-parts-search__submit-btn,
+  .car-parts-search__toggle-btn {
+    transition: none;
+  }
+  
+  .car-parts-search__submit-btn:before {
+    display: none;
+  }
+  
+  @keyframes slideInUp {
+    from, to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Focus indicators for keyboard navigation */
+.car-parts-search__select:focus-visible,
+.car-parts-search__vin-input:focus-visible,
+.car-parts-search__submit-btn:focus-visible,
+.car-parts-search__toggle-btn:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .car-parts-search {
+    background: none;
+    box-shadow: none;
+  }
+  
+  .car-parts-search__form-container {
+    box-shadow: none;
+    border: 2px solid #000;
+  }
+} 
